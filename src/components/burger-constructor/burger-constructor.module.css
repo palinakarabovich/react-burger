@@ -1,0 +1,67 @@
+.wrapper {
+  max-width: 600px;
+}
+
+.list {
+  list-style: none;
+  width: 100%;
+  height: calc(100vh - 344px);
+  overflow-y: scroll;
+  composes: mt-25 from global;
+  composes: mb-10 from global;
+  composes: pl-4 from global;
+  composes: pr-2 from global;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background-color: rgba(47, 47, 55, 1);
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 133, 173, 1);
+}
+
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.price {
+  margin-top: 0;
+  margin-bottom: 0;
+  composes: text_type_digits-medium from global;
+  composes: mr-10 from global;
+}
+
+.currency {
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+  object-position: center;
+  margin-left: 9.5px;
+}
+
+.dragIcon {
+  width: 13px;
+  height: 18.3px;
+  object-fit: contain;
+  object-position: center;
+  margin-right: 13.5px;
+  cursor: pointer;
+}
