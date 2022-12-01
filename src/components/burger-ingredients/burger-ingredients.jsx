@@ -3,6 +3,7 @@ import BurgerIngredientsList from '../burger-ingredients-list/burger-ingredients
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../loader/loader';
+import { ingredientType } from '../../utils/constans';
 
 const types = [{ name: 'Булки', type: 'bun' }, { name: 'Соусы', type: 'sauce' }, { name: 'Начинки', type: 'main' }];
 
@@ -51,34 +52,8 @@ export default BurgerIngredients;
 BurgerIngredients.propTypes = {
   data: PropTypes.shape({
     success: PropTypes.bool,
-    data: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-      proteins: PropTypes.number,
-      fat: PropTypes.number,
-      carbohydrates: PropTypes.number,
-      calories: PropTypes.number,
-      price: PropTypes.number,
-      image: PropTypes.string,
-      image_mobile: PropTypes.string,
-      image_large: PropTypes.string,
-      __v: PropTypes.number
-    }))
+    data: PropTypes.arrayOf(PropTypes.shape(ingredientType))
   }),
-  chosenIngredients: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    image_mobile: PropTypes.string,
-    image_large: PropTypes.string,
-    __v: PropTypes.number
-  })),
+  chosenIngredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
   modalOpen: PropTypes.func
 }

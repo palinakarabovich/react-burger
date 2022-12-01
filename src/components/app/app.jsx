@@ -3,11 +3,11 @@ import appStyles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { SERVER_URL } from '../../utils/constans';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import OrderDetails from '../order-details/order-details';
 import ingredients from '../../assets/data';
+import { getAllIngredients } from '../../utils/api';
 
 function App() {
   const [data, setData] = React.useState({});
@@ -15,8 +15,7 @@ function App() {
   const [isOrderModalOpen, setOrderModalOpen] = React.useState({ visibility: false, content: null });
 
   React.useEffect(() => {
-    fetch(SERVER_URL)
-      .then((res) => res.json())
+    getAllIngredients()
       .then((data) => {
         setData(data);
       })
@@ -37,25 +36,21 @@ function App() {
   }
 
   return (
-    <><div className={appStyles.app}>
+    <div className={appStyles.app}>
       <AppHeader />
-      <div className={appStyles.container}>
+      <main className={appStyles.container}>
         <BurgerIngredients data={data} modalOpen={handleIngredientClick} chosenIngredients={ingredients} />
         <BurgerConstructor chosenIngredients={ingredients} modalOpen={handleOrderButtonClick} />
-      </div>
-    </div><>
-        {isIngredientDetailsModalOpen.visibility &&
-          <Modal onClose={handleCloseModalClick} title='Детали ингредиента'>
-            <IngredientDetails ingredient={isIngredientDetailsModalOpen.content} />
-          </Modal>}
-      </>
-      <>
-        {isOrderModalOpen.visibility &&
-          <Modal onClose={handleCloseModalClick} title=''>
-            <OrderDetails />
-          </Modal>}
-      </>
-    </>
+      </main>
+      {isIngredientDetailsModalOpen.visibility &&
+        <Modal onClose={handleCloseModalClick} title='Детали ингредиента'>
+          <IngredientDetails ingredient={isIngredientDetailsModalOpen.content} />
+        </Modal>}
+      {isOrderModalOpen.visibility &&
+        <Modal onClose={handleCloseModalClick} title=''>
+          <OrderDetails />
+        </Modal>}
+    </div>
   );
 }
 

@@ -1,10 +1,11 @@
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import PropTypes from 'prop-types';
+import { ingredientType } from '../../utils/constans';
 
 const IngredientDetails = ({ ingredient }) => {
   return (
     <>
-      <img src={ingredient.image_large} className={ingredientDetailsStyles.img} />
+      <img src={ingredient.image_large} className={ingredientDetailsStyles.img} alt={ingredient.name}/>
       <div className={ingredientDetailsStyles.wrapper}>
         <h3 className={ingredientDetailsStyles.name}>{ingredient.name}</h3>
         <ul className={ingredientDetailsStyles.container}>
@@ -33,18 +34,5 @@ const IngredientDetails = ({ ingredient }) => {
 export default IngredientDetails;
 
 IngredientDetails.propTypes = {
-  ingredient: PropTypes.shape({
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    image_mobile: PropTypes.string,
-    image_large: PropTypes.string,
-    __v: PropTypes.number
-  })
+  ingredient: PropTypes.shape(ingredientType)
 }

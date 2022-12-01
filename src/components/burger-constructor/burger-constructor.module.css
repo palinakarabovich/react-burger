@@ -1,19 +1,29 @@
 .wrapper {
   max-width: 600px;
+  composes: pl-4 from global;
+  composes: pr-4 from global;
+  box-sizing: border-box;
 }
 
-.list {
-  list-style: none;
+.ingredients {
   width: 100%;
   height: calc(100vh - 344px);
-  overflow-y: scroll;
   composes: mt-25 from global;
   composes: mb-10 from global;
-  composes: pl-4 from global;
-  composes: pr-2 from global;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: flex-end;
+}
+
+.list{
+  width: 100%;
+  list-style: none;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-right: -16px;
+  composes: pr-2 from global;
 }
 
 .list::-webkit-scrollbar {

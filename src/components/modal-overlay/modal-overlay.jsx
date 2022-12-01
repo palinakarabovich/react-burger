@@ -1,11 +1,15 @@
 import modalOverlayStyles from './modal-overlay.module.css';
+import PropTypes from 'prop-types';
 
-const ModalOverlay = () => {
+const ModalOverlay = ({ onClose }) => {
   return (
-    <>
-      <div className={modalOverlayStyles.background} />
-    </>
+    <div className={modalOverlayStyles.background} onClick={onClose}/>
   )
 }
 
 export default ModalOverlay;
+
+ModalOverlay.propTypes = {
+  onClose: PropTypes.func
+}
+
