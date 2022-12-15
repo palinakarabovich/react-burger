@@ -2,7 +2,6 @@ import burgerIngredientsStyles from './burger-ingredients.module.css'
 import BurgerIngredientsList from '../burger-ingredients-list/burger-ingredients-list'
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ingredientType } from '../../utils/constans';
 import { useSelector } from 'react-redux';
 
 const types = [{ name: 'Булки', type: 'bun' }, { name: 'Соусы', type: 'sauce' }, { name: 'Начинки', type: 'main' }];
@@ -74,9 +73,5 @@ const BurgerIngredients = ({ modalOpen }) => {
 export default BurgerIngredients;
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.shape({
-    success: PropTypes.bool,
-    data: PropTypes.arrayOf(PropTypes.shape(ingredientType))
-  }),
   modalOpen: PropTypes.func
 }

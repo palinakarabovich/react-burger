@@ -17,7 +17,7 @@ const Modal = ({ children, title, onClose }) => {
   });
 
   const closeEsc = (e) => {
-    if (e.keyCode === 27)
+    if (e.key === 'Escape')
       onClose();
   }
 

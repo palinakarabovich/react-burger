@@ -7,7 +7,7 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import OrderDetails from '../order-details/order-details';
 import ingredients from '../../assets/data';
-import { getIngredients } from '../../services/slices/ingredientsSlice';
+import { getIngredients } from '../../services/actions/ingredientsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addIngredient, removeIngredient } from '../../services/slices/ingredientDetailsSlice';
 import { DndProvider } from "react-dnd";

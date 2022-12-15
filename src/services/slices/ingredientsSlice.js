@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SERVER_URL } from '../../utils/constans';
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
@@ -34,19 +33,6 @@ const ingredientsSlice = createSlice({
     }
   }
 });
-
-export const getIngredients = () => dispatch => {
-  dispatch(ingredientsRequest());
-  fetch(SERVER_URL)
-  .then(res => {
-    if (res.ok) {
-      return res.json()
-    }
-    return Promise.reject(res.status)
-  })
-  .then((data) => dispatch(ingredientsSuccess(data.data)))
-  .catch(() => dispatch(ingredientsFail()));
-}
 
 export default ingredientsSlice.reducer
 export const { ingredientsFail, ingredientsSuccess, ingredientsRequest} = ingredientsSlice.actions

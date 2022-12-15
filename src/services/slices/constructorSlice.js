@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 const constructorSlice = createSlice({
   name: 'burgerConstructor',
@@ -9,8 +10,8 @@ const constructorSlice = createSlice({
   },
   reducers: {
     addIngredient: (state, action) => {
-      state.items.push({ ...action.payload});
-      state.price += action.payload.price
+      state.items.push({ ...action.payload, uuid: uuidv4()});
+      state.price += action.payload.price;
     },
     setBun: (state, action) => {
       if (state.bun) {

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { setBun, addIngredient, removeIngredient } from '../../services/slices/constructorSlice';
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
-import { setOrder } from '../../services/slices/orderSlice';
+import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
 
 const BurgerConstructor = ({ modalOpen }) => {
@@ -60,7 +60,7 @@ const BurgerConstructor = ({ modalOpen }) => {
             items.map((i, index) => {
               if (i.type !== 'bun') {
                 return (
-                  <li key={`${i._id}${index}`} className={burgerConstructorStyles.element}>
+                  <li key={ i.uuid } className={burgerConstructorStyles.element}>
                     <div className={burgerConstructorStyles.dragIcon}>
                       <DragIcon type="primary" />
                     </div>
