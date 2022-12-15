@@ -7,23 +7,25 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import OrderDetails from '../order-details/order-details';
 import ingredients from '../../assets/data';
-import { getAllIngredients } from '../../utils/api';
+import { getIngredients } from '../../services/slices/ingredientsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addIngredient, removeIngredient } from '../../services/slices/ingredientDetailsSlice';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
-  const [data, setData] = React.useState({});
-  const [isIngredientDetailsModalOpen, setIngredientDetailsModalOpen] = React.useState({ visibility: false, content: null });
+  const [isIngredientDetailsModalOpen, setIngredientDetailsModalOpen] = React.useState({ visibility: false });
   const [isOrderModalOpen, setOrderModalOpen] = React.useState({ visibility: false, content: null });
+  const { itemsSuccess } = useSelector((store) => store.ingredients);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    getAllIngredients()
-      .then((data) => {
-        setData(data);
-      })
-      .catch((err) => console.log(err));
-  }, [])
+    dispatch(getIngredients());
+  }, [dispatch])
 
   const handleIngredientClick = (ingredient) => {
-    setIngredientDetailsModalOpen({ visibility: true, content: ingredient });
+    dispatch(addIngredient(ingredient));
+    setIngredientDetailsModalOpen({ visibility: true });
   }
 
   const handleOrderButtonClick = () => {
@@ -31,20 +33,28 @@ function App() {
   }
 
   const handleCloseModalClick = () => {
-    setIngredientDetailsModalOpen({ visibility: false, content: null });
+    dispatch(removeIngredient());
+    setIngredientDetailsModalOpen({ visibility: false });
     setOrderModalOpen({ visibility: false, content: null });
   }
 
   return (
     <div className={appStyles.app}>
       <AppHeader />
-      <main className={appStyles.container}>
-        <BurgerIngredients data={data} modalOpen={handleIngredientClick} chosenIngredients={ingredients} />
-        <BurgerConstructor chosenIngredients={ingredients} modalOpen={handleOrderButtonClick} />
-      </main>
+      {
+        itemsSuccess
+        && (
+          <main className={appStyles.container}>
+            <DndProvider backend={HTML5Backend}>
+              <BurgerIngredients modalOpen={handleIngredientClick} chosenIngredients={ingredients} />
+              <BurgerConstructor chosenIngredients={ingredients} modalOpen={handleOrderButtonClick} />
+            </DndProvider>
+          </main>
+        )
+      }
       {isIngredientDetailsModalOpen.visibility &&
         <Modal onClose={handleCloseModalClick} title='Детали ингредиента'>
-          <IngredientDetails ingredient={isIngredientDetailsModalOpen.content} />
+          <IngredientDetails />
         </Modal>}
       {isOrderModalOpen.visibility &&
         <Modal onClose={handleCloseModalClick} title=''>

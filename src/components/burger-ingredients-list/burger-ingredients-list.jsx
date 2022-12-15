@@ -2,26 +2,25 @@ import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients
 import burgerIngredientsListStyles from './burger-ingredients-list.module.css';
 import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/constans';
+import React from 'react';
 
-const BurgerIngredientsList = ({ title, ingredients, chosenIngredients, modalOpen }) => {
+const BurgerIngredientsList = React.forwardRef(({ title, ingredients, modalOpen }, ref) => {
   return (
     <>
-      <h3 className={burgerIngredientsListStyles.title}>{title}</h3>
+      <h3 className={burgerIngredientsListStyles.title} ref={ref}>{title}</h3>
       <ul className={burgerIngredientsListStyles.list}>
         {
-          ingredients.map((i) => (<li className={burgerIngredientsListStyles.card} key={i._id}><BurgerIngredientsCard ingredient={i} modalOpen={modalOpen} chosenIngredients={chosenIngredients} /></li>))
+          ingredients.map((i) => (<li className={burgerIngredientsListStyles.card} key={i._id}><BurgerIngredientsCard ingredient={i} modalOpen={modalOpen} /></li>))
         }
       </ul>
     </>
   )
-}
+});
 
 export default BurgerIngredientsList;
 
 BurgerIngredientsList.propTypes = {
   title: PropTypes.string,
-  chosenIngredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
   ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
   modalOpen: PropTypes.func
-
 }
