@@ -1,0 +1,20 @@
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgba(133, 133, 173, 1);
+  composes: text_type_main-default from global;
+  composes: p-5 from global;
+  composes: mr-2 from global;
+}
+
+.linkActive {
+  color: rgba(242, 242, 243, 1);
+}
+
+.description {
+  margin-top: 0;
+  margin-bottom: 0;
+  composes: ml-2 from global;
+}

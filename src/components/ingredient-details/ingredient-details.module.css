@@ -1,0 +1,41 @@
+.img {
+  width: 480px;
+  height: 240px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.name {
+  composes: mt-4 from global;
+  composes: mb-8 from global;
+  composes: text_type_main-medium from global;
+  text-align: center;
+}
+
+.container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(133, 133, 173, 1);
+  composes: text_type_main-defaul from global;
+}
+
+.number {
+  composes: text_type_digits-small from global;
+  margin-top: 8px;
+}
+
+.wrapper {
+  width: 520px;
+}

@@ -1,1 +1,1 @@
-Stellar Burger
+Stellar Burger - лучшие бургеры во вселенной!

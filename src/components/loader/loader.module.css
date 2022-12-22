@@ -1,0 +1,20 @@
+.loader {
+  width: 30px;
+  height: 30px;
+  background-image: url('../../images/loader-icon.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: rotation 3s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

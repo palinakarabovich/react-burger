@@ -1,0 +1,21 @@
+.app {
+  width: 100%;
+  height: 100vh;
+  background-color: #131316;
+  box-sizing: border-box;
+  position: relative;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  composes: text from global;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}

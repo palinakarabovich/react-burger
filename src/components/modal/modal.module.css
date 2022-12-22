@@ -1,0 +1,40 @@
+.container {
+  width: 720px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(28, 28, 33, 1);
+  border-radius: 40px;
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(76, 76, 255, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  composes: pt-10 from global;
+  composes: pb-15 from global;
+}
+
+.closeButton {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  object-position: center;
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.title {
+  composes: text_type_main-large from global;
+  margin: 0;
+  width: 640px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

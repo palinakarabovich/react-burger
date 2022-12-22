@@ -1,0 +1,17 @@
+.title {
+  composes: text_type_main-medium from global;
+  composes: mb-6 from global;
+  margin-top: 0;
+}
+
+.list {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  composes: pl-4 from global;
+  composes: pr-2 from global;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  row-gap: 32px;
+  column-gap: 24px;
+}
