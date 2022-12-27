@@ -9,7 +9,7 @@ const Register = () => {
 
   const [userData, setUserData] = React.useState({ name: '', email: '', password: '' });
   const dispatch = useDispatch();
-  const { authDataReceived } = useSelector((store) => store.user);
+  const { userSuccess } = useSelector((store) => store.user);
 
   const onChange = e => {
     setUserData({
@@ -36,7 +36,7 @@ const Register = () => {
     <section className={registerStyles.container}>
       <h2 className={registerStyles.title}>Регистрация</h2>
       {
-        !authDataReceived
+        !userSuccess
           ? (
             <form className={registerStyles.form}>
               <Input

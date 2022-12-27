@@ -9,7 +9,7 @@ const Login = () => {
 
   const [userData, setUserData] = React.useState({ email: '', password: '' });
   const dispatch = useDispatch();
-  const { authDataReceived } = useSelector((store) => store.user);
+  const { userSuccess } = useSelector((store) => store.user);
 
   const onChange = e => {
     setUserData({
@@ -36,7 +36,7 @@ const Login = () => {
     <section className={loginStyles.container}>
       <h2 className={loginStyles.title}>Вход</h2>
       {
-        !authDataReceived
+        !userSuccess
           ? (
             <form className={loginStyles.form}>
               <EmailInput

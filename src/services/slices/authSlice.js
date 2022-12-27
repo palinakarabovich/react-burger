@@ -83,4 +83,3 @@ const authSlice = createSlice({
 export default authSlice.reducer;
 export const { getUserRequest, getUserRequestSuccessful, getUserRequestError, removeUser, getUserUpdateRequest,
   getUserUpdateRequestSuccessful, getUserUpdateRequestError } = authSlice.actions;
-

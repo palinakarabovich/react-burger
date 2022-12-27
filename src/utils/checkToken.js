@@ -18,7 +18,7 @@ const checkToken = async (url, options) => {
     return await checkResponse(res);
   } catch (err) {
     console.log(err);
-    if (err === 403 || err === 401) {
+    if (err === 403) {
       const refreshData = await refreshToken();
       localStorage.setItem('refreshToken', refreshData.refreshToken);
       setCookie('accessToken', refreshData.accessToken);

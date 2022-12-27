@@ -126,9 +126,10 @@ export const logout = () => dispatch => {
     })
     .then(res => checkResponse(res))
     .then((data) => {
-      dispatch(removeUser());
       setCookie('accessToken', '');
       localStorage.clear();
+      dispatch(removeUser());
+      debugger;
     })
     .catch(() => dispatch(getUserRequestError()));
 }
