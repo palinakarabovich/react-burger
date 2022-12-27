@@ -12,10 +12,3 @@
   text-rendering: optimizeLegibility;
   composes: text from global;
 }
-
-.container {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}

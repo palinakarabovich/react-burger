@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const types = [{ name: 'Булки', type: 'bun' }, { name: 'Соусы', type: 'sauce' }, { name: 'Начинки', type: 'main' }];
 
-const BurgerIngredients = ({ modalOpen }) => {
+const BurgerIngredients = () => {
   const { items } = useSelector((store) => store.ingredients);
   const [selectedCategory, setSelectedcategory] = React.useState(0);
 
@@ -60,9 +60,9 @@ const BurgerIngredients = ({ modalOpen }) => {
         bunsItems.length !== 0 && saucesItems.length !== 0 && mainItems.length !== 0
         && (
           <div className={burgerIngredientsStyles.container} ref={containerRef} onScroll={handleScroll}>
-            <BurgerIngredientsList ref={bunsRef} title={types[0].name} ingredients={bunsItems} modalOpen={modalOpen} />
-            <BurgerIngredientsList ref={sauceRef} title={types[1].name} ingredients={saucesItems} modalOpen={modalOpen} />
-            <BurgerIngredientsList ref={mainRef} title={types[2].name} ingredients={mainItems} modalOpen={modalOpen} />
+            <BurgerIngredientsList ref={bunsRef} title={types[0].name} ingredients={bunsItems} />
+            <BurgerIngredientsList ref={sauceRef} title={types[1].name} ingredients={saucesItems} />
+            <BurgerIngredientsList ref={mainRef} title={types[2].name} ingredients={mainItems} />
           </div>
         )
       }
@@ -71,7 +71,3 @@ const BurgerIngredients = ({ modalOpen }) => {
 }
 
 export default BurgerIngredients;
-
-BurgerIngredients.propTypes = {
-  modalOpen: PropTypes.func
-}

@@ -7,12 +7,16 @@ import { setBun, addIngredient, removeIngredient } from '../../services/slices/c
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
 import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-const BurgerConstructor = ({ modalOpen }) => {
+const BurgerConstructor = () => {
 
   const { items, price, bun } = useSelector((store) => store.burgerConstructor);
+  const { loggedIn } = useSelector((store) => store.user);
+  const { orderRequest } = useSelector((store) => store.order);
   const [isPlaceholder, setPlaceholder] = React.useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [{ border }, dropTarget] = useDrop({
     accept: 'ingredients',
@@ -31,6 +35,10 @@ const BurgerConstructor = ({ modalOpen }) => {
   }, [bun])
 
   const onOrderButtonClick = () => {
+    if (!loggedIn) {
+      history.replace({ pathname: '/login' });
+      return;
+    }
     if (bun !== null) {
       dispatch(setOrder(
         [].concat(
@@ -39,7 +47,6 @@ const BurgerConstructor = ({ modalOpen }) => {
           bun._id
         ))
       );
-      modalOpen();
     } else {
       setPlaceholder(true);
     }
@@ -51,16 +58,16 @@ const BurgerConstructor = ({ modalOpen }) => {
 
   return (
     <section className={burgerConstructorStyles.wrapper} ref={dropTarget}>
-      <div className={burgerConstructorStyles.ingredients} style={{ border }}>
+      <div className={`${burgerConstructorStyles.ingredients} ${bun === null && items.length === 0 ? burgerConstructorStyles.ingredientsEmpty : ''}`} style={{ border }}>
         <div className={burgerConstructorStyles.bun}>
           {bun && <BurgerConstructorElement type='top' ingredient={bun} isLocked={true} />}
         </div>
         <ul className={burgerConstructorStyles.list}>
-          {items.length !== 0 &&
-            items.map((i, index) => {
+          {items.length !== 0
+            ? items.map((i, index) => {
               if (i.type !== 'bun') {
                 return (
-                  <li key={ i.uuid } className={burgerConstructorStyles.element}>
+                  <li key={i.uuid} className={burgerConstructorStyles.element}>
                     <div className={burgerConstructorStyles.dragIcon}>
                       <DragIcon type="primary" />
                     </div>
@@ -68,7 +75,9 @@ const BurgerConstructor = ({ modalOpen }) => {
                   </li>)
               }
             }
-            )}
+            )
+            : bun === null
+            && <p className={burgerConstructorStyles.placeholder}>Перетащите ингредиенты сюда</p>}
         </ul>
         <div className={burgerConstructorStyles.bun}>
           {bun && <BurgerConstructorElement type='bottom' ingredient={bun} isLocked={true} />}
@@ -80,7 +89,9 @@ const BurgerConstructor = ({ modalOpen }) => {
       <div className={burgerConstructorStyles.info}>
         <p className={burgerConstructorStyles.price}>{price}<span className={burgerConstructorStyles.currency}><CurrencyIcon /></span></p>
         <Button htmlType="button" type="primary" size="large" onClick={onOrderButtonClick}>
-          Оформить заказ
+          {
+            !orderRequest ? 'Оформить заказ' : 'Отправка...'
+          }
         </Button>
       </div>
     </section>
@@ -88,7 +99,3 @@ const BurgerConstructor = ({ modalOpen }) => {
 }
 
 export default BurgerConstructor;
-
-BurgerConstructor.propTypes = {
-  modalOpen: PropTypes.func,
-}
