@@ -18,7 +18,8 @@ const Register = () => {
     })
   }
 
-  const handleRegistration = () => {
+  const handleRegistration = (e) => {
+    e.preventDefault();
     dispatch(register(userData));
   }
 
@@ -38,7 +39,7 @@ const Register = () => {
       {
         !userSuccess
           ? (
-            <form className={registerStyles.form}>
+            <form className={registerStyles.form} onSubmit={handleRegistration}>
               <Input
                 type={'text'}
                 placeholder={'Имя'}
@@ -60,7 +61,7 @@ const Register = () => {
                 name={'password'}
                 extraClass="mb-2"
               />
-              <Button htmlType="button" type="primary" size="medium" onClick={handleRegistration}>
+              <Button htmlType="submit" type="primary" size="medium">
                 Зарегистрироваться
               </Button>
             </form>

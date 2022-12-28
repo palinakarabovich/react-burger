@@ -21,7 +21,8 @@ const ResetPassword = () => {
     })
   }
 
-  const handleResetPassword = () => {
+  const handleResetPassword = (e) => {
+    e.preventDefault();
     dispatch(resetPassword(userData));
   };
 
@@ -49,7 +50,7 @@ const ResetPassword = () => {
   return (
     <section className={resetPasswordStyles.container}>
       <h2 className={resetPasswordStyles.title}>Восстановление пароля</h2>
-      <form className={resetPasswordStyles.form}>
+      <form className={resetPasswordStyles.form} onSubmit={handleResetPassword}>
         <PasswordInput
           onChange={onChange}
           value={userData.password}
@@ -62,7 +63,7 @@ const ResetPassword = () => {
           onChange={onChange}
           value={userData.token}
           name={'token'} />
-        <Button htmlType="button" type="primary" size="medium" onClick={handleResetPassword}>
+        <Button htmlType="submit" type="primary" size="medium">
           Сохранить
         </Button>
       </form>

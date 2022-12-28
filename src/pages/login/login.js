@@ -18,7 +18,8 @@ const Login = () => {
     })
   }
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     dispatch(login(userData));
   }
 
@@ -38,7 +39,7 @@ const Login = () => {
       {
         !userSuccess
           ? (
-            <form className={loginStyles.form}>
+            <form className={loginStyles.form} onSubmit={handleLogin}>
               <EmailInput
                 onChange={onChange}
                 value={userData.email}
@@ -53,7 +54,7 @@ const Login = () => {
                 extraClass="mb-2"
                 placeholder={'Пароль'}
               />
-              <Button htmlType="button" type="primary" size="medium" onClick={handleLogin}>
+              <Button htmlType="submit" type="primary" size="medium">
                 Войти
               </Button>
             </form>

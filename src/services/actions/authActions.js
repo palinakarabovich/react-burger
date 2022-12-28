@@ -73,7 +73,6 @@ export const login = (user) => dispatch => {
     .then(res => checkResponse(res))
     .then((data) => {
       dispatch(getUserRequestSuccessful({ name: data.user.name, email: user.email, password: user.password }));
-      console.log(data);
       localStorage.setItem('refreshToken', data.refreshToken);
       setCookie('accessToken', data.accessToken);
     })
@@ -129,7 +128,6 @@ export const logout = () => dispatch => {
       setCookie('accessToken', '');
       localStorage.clear();
       dispatch(removeUser());
-      debugger;
     })
     .catch(() => dispatch(getUserRequestError()));
 }

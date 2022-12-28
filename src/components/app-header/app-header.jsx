@@ -13,7 +13,7 @@ const AppHeader = () => {
   React.useEffect(() => {
     if (pathname === '/') {
       setNav({ constructor: true, orders: false, profile: false })
-    } else if (pathname === '/profile') {
+    } else if (pathname.includes('/profile')) {
       setNav({ constructor: false, orders: false, profile: true })
     } else if (pathname === '/order-feed') {
       setNav({ constructor: false, orders: true, profile: false })

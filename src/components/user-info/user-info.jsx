@@ -34,13 +34,14 @@ const UserInfo = () => {
     setInputsDisabled({ name: true, email: true, password: true });
   }
 
-  const onClickSave = () => {
+  const onClickSave = (e) => {
+    e.preventDefault();
     dispatch(updateUser(form));
     setInputsDisabled({ name: true, email: true, password: true });
   }
 
   return (
-    <form className={userInfoStyles.form}>
+    <form className={userInfoStyles.form} onSubmit={onClickSave}>
       <Input
         type={'text'}
         placeholder={'Имя'}
@@ -81,7 +82,7 @@ const UserInfo = () => {
             <Button htmlType="button" type="secondary" size="medium" onClick={onClickCancel}>
               Отмена
             </Button>
-            <Button htmlType="button" type="primary" size="medium" onClick={onClickSave}>
+            <Button htmlType="submit" type="primary" size="medium">
               Сохранить
             </Button>
           </div>

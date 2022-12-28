@@ -20,7 +20,8 @@ const ForgotPassword = () => {
     })
   }
 
-  const handleForgotPassword = () => {
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
     dispatch(getNewPassword(userData));
   }
 
@@ -45,7 +46,7 @@ const ForgotPassword = () => {
   return (
     <section className={forgetPasswordStyles.container}>
       <h2 className={forgetPasswordStyles.title}>Восстановление пароля</h2>
-      <form className={forgetPasswordStyles.form}>
+      <form className={forgetPasswordStyles.form} onSubmit={handleForgotPassword}>
         < EmailInput
           onChange={onChange}
           value={userData.email}
@@ -53,7 +54,7 @@ const ForgotPassword = () => {
           isIcon={false}
           placeholder={'Укажите e-mail'}
         />
-        <Button htmlType="button" type="primary" size="medium" onClick={handleForgotPassword}>
+        <Button htmlType="submit" type="primary" size="medium">
           Восстановить
         </Button>
       </form>

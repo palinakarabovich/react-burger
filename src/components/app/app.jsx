@@ -39,11 +39,8 @@ function App() {
         {itemsSuccess
           && (
             <Switch>
-              <ProtectedRoute exact path='/profile'>
-                <Profile type={'user'} />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/orders'>
-                <Profile type={'orders'} />
+              <ProtectedRoute path='/profile'>
+                <Profile />
               </ProtectedRoute>
               <Route exact path='/login'>
                 <Login />
