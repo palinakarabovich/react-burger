@@ -1,0 +1,13 @@
+.form {
+  width: 480px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 24px;
+}
+
+.buttonsGroup{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

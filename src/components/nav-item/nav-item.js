@@ -15,10 +15,10 @@ const NavItem = ({ Icon, description, active }) => {
   }
 
   return (
-    <a className={`${navItemStyles.link} ${active || isActive ? navItemStyles.linkActive : ''}`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div className={`${navItemStyles.link} ${active || isActive ? navItemStyles.linkActive : ''}`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Icon type={`${isActive || active ? 'primary' : 'secondary'}`} />
       <p className={navItemStyles.description}>{description}</p>
-    </a>
+    </div>
   )
 }
 

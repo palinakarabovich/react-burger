@@ -3,15 +3,19 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/constans';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
+import { useHistory } from 'react-router-dom';
+import { addIngredient } from '../../services/slices/ingredientDetailsSlice';
 
-const BurgerIngredientsCard = ({ ingredient, modalOpen }) => {
+const BurgerIngredientsCard = ({ ingredient }) => {
 
   const [quantity, setQuantity] = React.useState(0);
   const chosenIngredients = useSelector((store) => store.burgerConstructor.items);
   const [selectedBun, setSelectedBun] = React.useState(false);
   const { bun } = useSelector((store) => store.burgerConstructor);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const [{ opacity }, ref] = useDrag({
     type: 'ingredients',
@@ -34,7 +38,12 @@ const BurgerIngredientsCard = ({ ingredient, modalOpen }) => {
   }, [bun]);
 
   const onClickIngredient = () => {
-    modalOpen(ingredient);
+    const _location = {
+      pathname: `/ingredients/${ingredient._id}`,
+      state: { openIngredientModal: true }
+    }
+    history.push(_location)
+    dispatch(addIngredient(ingredient));
   }
 
   return (
@@ -54,6 +63,5 @@ const BurgerIngredientsCard = ({ ingredient, modalOpen }) => {
 export default BurgerIngredientsCard;
 
 BurgerIngredientsCard.propTypes = {
-  ingredient: PropTypes.shape(ingredientType),
-  modalOpen: PropTypes.func
+  ingredient: PropTypes.shape(ingredientType)
 }

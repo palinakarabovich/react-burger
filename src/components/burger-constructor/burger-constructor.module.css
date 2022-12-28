@@ -82,3 +82,17 @@
   width: 100%;
   text-align: center;
 }
+
+.placeholder{
+  composes: text_type_main-default from global;
+  margin: 0;
+  text-align: center;
+  color: #8585AD;
+}
+
+.ingredientsEmpty{
+  border: 2px dotted rgba(133, 133, 173, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

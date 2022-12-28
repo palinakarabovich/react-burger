@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/constans';
 import React from 'react';
 
-const BurgerIngredientsList = React.forwardRef(({ title, ingredients, modalOpen }, ref) => {
+const BurgerIngredientsList = React.forwardRef(({ title, ingredients }, ref) => {
   return (
     <>
       <h3 className={burgerIngredientsListStyles.title} ref={ref}>{title}</h3>
       <ul className={burgerIngredientsListStyles.list}>
         {
-          ingredients.map((i) => (<li className={burgerIngredientsListStyles.card} key={i._id}><BurgerIngredientsCard ingredient={i} modalOpen={modalOpen} /></li>))
+          ingredients.map((i) => (<li className={burgerIngredientsListStyles.card} key={i._id}><BurgerIngredientsCard ingredient={i} /></li>))
         }
       </ul>
     </>
@@ -21,6 +21,5 @@ export default BurgerIngredientsList;
 
 BurgerIngredientsList.propTypes = {
   title: PropTypes.string,
-  ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
-  modalOpen: PropTypes.func
+  ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType))
 }

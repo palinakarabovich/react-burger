@@ -1,0 +1,46 @@
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 180px;
+}
+
+.title {
+  margin: 0;
+  composes: text_type_main-medium from global;
+}
+
+.form {
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  composes: mb-20 from global;
+  composes: mt-6 from global;
+  gap: 24px;
+}
+
+.info {
+  margin: 0;
+  composes: text_type_main-default from global;
+  color: #8585AD;
+}
+
+.link {
+  text-decoration: none;
+  color: #4C4CFF;
+  composes: pl-2 from global;
+  transition: ease-in-out .3s color;
+}
+
+.link:hover {
+  color: #F2F2F3;
+}
+
+.info+.info {
+  margin-top: 16px;
+}

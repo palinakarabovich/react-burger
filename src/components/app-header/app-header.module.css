@@ -29,3 +29,7 @@
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
+
+.link{
+  text-decoration: none;
+}
