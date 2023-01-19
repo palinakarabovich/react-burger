@@ -10,7 +10,7 @@ const constructorSlice = createSlice({
   },
   reducers: {
     addIngredient: (state, action) => {
-      state.items.push({ ...action.payload, uuid: uuidv4()});
+      state.items.push({ ...action.payload, uuid: uuidv4() });
       state.price += action.payload.price;
     },
     setBun: (state, action) => {
@@ -32,7 +32,7 @@ const constructorSlice = createSlice({
       state.items[secondIndex] = temporary;
     },
     clean: (state, action) => {
-      return{
+      return {
         items: [],
         price: 0,
         bun: null
@@ -42,5 +42,5 @@ const constructorSlice = createSlice({
 });
 
 export default constructorSlice.reducer;
-export const { addIngredient, setBun, clean, removeIngredient, changeIngredientsOrder} = constructorSlice.actions;
+export const { addIngredient, setBun, clean, removeIngredient, changeIngredientsOrder } = constructorSlice.actions;
 
