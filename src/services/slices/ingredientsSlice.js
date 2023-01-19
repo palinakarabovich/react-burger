@@ -35,4 +35,4 @@ const ingredientsSlice = createSlice({
 });
 
 export default ingredientsSlice.reducer
-export const { ingredientsFail, ingredientsSuccess, ingredientsRequest} = ingredientsSlice.actions
+export const { ingredientsFail, ingredientsSuccess, ingredientsRequest } = ingredientsSlice.actions
