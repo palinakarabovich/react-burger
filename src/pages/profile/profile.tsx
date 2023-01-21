@@ -31,10 +31,10 @@ const Profile = () => {
           :
           <div className={profileStyles.content}>
             <Switch>
-              <ProtectedRoute exact={true} path={`${path}`}>
+              <ProtectedRoute onlyForAuth exact={true} path={`${path}`}>
                 <UserInfo />
               </ProtectedRoute>
-              <ProtectedRoute exact={true} path={`${path}/orders/`}>
+              <ProtectedRoute onlyForAuth exact={true} path={`${path}/orders/`}>
                 <>orders</>
               </ProtectedRoute>
             </Switch>

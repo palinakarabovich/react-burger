@@ -1,43 +1,46 @@
-import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { Redirect, Route, RouteProps, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import { getUser } from '../../services/actions/authActions';
-import Loader from '../loader/loader';
 
+type TLocationTemplate = {
+  from?: any;
+}
 
-const ProtectedRoute: React.FunctionComponent<RouteProps> = ({ children, ...rest }) => {
-  const { loggedIn, authDataReceived } = useSelector((store: any): any => store.user);
+const ProtectedRoute: React.FC<RouteProps & { children?: React.ReactNode; onlyForAuth: boolean }> = (
+  { onlyForAuth, children, ...rest }) => {
+
+  const location = useLocation<TLocationTemplate>();
+  const { loggedIn } = useSelector((store: any) => store.user);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (!loggedIn) {
-      // @ts-ignore
+      //@ts-ignore
       dispatch(getUser());
     }
   }, []);
 
-  if (!authDataReceived) {
-    return <Loader />
+  if (!onlyForAuth && loggedIn) {
+    const { from } = location.state || { from: { pathname: "/" } };
+    return (
+      <Route {...rest}>
+        <Redirect to={from} />
+      </Route>
+    );
   }
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }: any) =>
-        loggedIn ?
-          (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: location }
-              }}
-            />
-          )
-      }
-    />
-  );
-}
+  if (onlyForAuth && !loggedIn) {
+    return (
+      <Route {...rest}>
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
+      </Route>
+    );
+  }
+
+  return <Route {...rest}>{children}</Route>;
+};
 
 export default ProtectedRoute;
+
+

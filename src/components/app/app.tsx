@@ -8,7 +8,7 @@ import { getIngredients } from '../../services/actions/ingredientsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Profile from '../../pages/profile/profile';
 import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
@@ -20,22 +20,26 @@ import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import MainPage from '../../pages/main-page/main-page';
 
-interface ILocationType {
+type TLocationTemplate = {
+  background?: any;
   openIngredientModal?: boolean;
 }
 
 function App() {
   const { itemsSuccess } = useSelector((store: any): any => store.ingredients);
-  const { orderModalOpen } = useSelector((store: any): any => store.order);
   const dispatch = useDispatch();
-  const { state } = useLocation<ILocationType>();
+  const history = useHistory();
+  const location = useLocation<TLocationTemplate>();
+  let background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background;
+  const modalWithIngredientWasOpen = location.state?.openIngredientModal;
 
-  const modalWithIngredientWasOpen = state?.openIngredientModal;
+  console.log(modalWithIngredientWasOpen);
 
   React.useEffect(() => {
     //@ts-ignore
     dispatch(getIngredients());
   }, [dispatch]);
+
 
   return (
     <div className={appStyles.app}>
@@ -43,28 +47,28 @@ function App() {
         <AppHeader />
         {itemsSuccess
           && (
-            <Switch>
-              <ProtectedRoute path='/profile'>
+            <Switch location={background || location }>
+              <Route exact path='/'>
+                <MainPage />
+              </Route>
+              <ProtectedRoute onlyForAuth path='/profile'>
                 <Profile />
               </ProtectedRoute>
-              <Route exact path='/login'>
+              <ProtectedRoute onlyForAuth={false} exact path='/login'>
                 <Login />
-              </Route>
-              <Route exact path='/register'>
+              </ProtectedRoute>
+              <ProtectedRoute onlyForAuth={false} exact path='/register'>
                 <Register />
-              </Route>
-              <Route exact path='/forgot-password'>
+              </ProtectedRoute>
+              <ProtectedRoute onlyForAuth={false} exact path='/forgot-password'>
                 <ForgotPassword />
-              </Route>
-              <Route exact path='/reset-password'>
+              </ProtectedRoute>
+              <ProtectedRoute onlyForAuth={false} exact path='/reset-password'>
                 <ResetPassword />
-              </Route>
+              </ProtectedRoute>
               <Route exact path='/order-feed' />
               <Route exact path='/ingredients/:id'>
                 <Ingredient />
-              </Route>
-              <Route exact path='/'>
-                <MainPage />
               </Route>
               <Route>
                 <NotFound />
@@ -72,15 +76,13 @@ function App() {
             </Switch>
           )
         }
-        {modalWithIngredientWasOpen &&
-          <Modal title='Детали ингредиента'>
-            <IngredientDetails />
-          </Modal>
+
+        {background || modalWithIngredientWasOpen ?
+          (<>
+            <Route path='/' exact={true} children={<Modal title=''><OrderDetails /></Modal>} />
+            <Route path='/ingredients/:id' children={<Modal title='Детали ингредиента'><IngredientDetails /></Modal>} />
+          </>) : <></>
         }
-        {orderModalOpen &&
-          <Modal title=''>
-            <OrderDetails />
-          </Modal>}
       </DndProvider>
     </div>
   );

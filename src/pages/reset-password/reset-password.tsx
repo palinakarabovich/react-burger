@@ -42,16 +42,6 @@ const ResetPassword = () => {
     });
   }
 
-  if (localStorage.getItem('refreshToken')) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/'
-        }}
-      />
-    );
-  }
-
   return (
     <section className={resetPasswordStyles.container}>
       <h2 className={resetPasswordStyles.title}>Восстановление пароля</h2>

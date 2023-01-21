@@ -2,21 +2,22 @@ import burgerConstructorStyles from './burger-constructor.module.css'
 import { Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
-import { setBun, addIngredient, removeIngredient } from '../../services/slices/constructorSlice';
+import { setBun, addIngredient, removeIngredient, clean } from '../../services/slices/constructorSlice';
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
 import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { TIngredient, DraggableTypes } from '../../types';
 
 const BurgerConstructor = () => {
 
   const { items, price, bun } = useSelector((store: any): any => store.burgerConstructor);
   const { loggedIn } = useSelector((store: any): any => store.user);
-  const { orderRequest } = useSelector((store: any): any => store.order);
+  const { orderRequest, orderSuccess } = useSelector((store: any): any => store.order);
   const [isPlaceholder, setPlaceholder] = React.useState<boolean>(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   const [{ border }, dropTarget] = useDrop({
     accept: DraggableTypes.ingredients,
@@ -29,6 +30,11 @@ const BurgerConstructor = () => {
   });
 
   React.useEffect(() => {
+    //@ts-ignore
+    orderSuccess && dispatch(clean());
+  }, [orderSuccess])
+
+  React.useEffect(() => {
     if (bun !== null) {
       setPlaceholder(false);
     }
@@ -36,10 +42,16 @@ const BurgerConstructor = () => {
 
   const onOrderButtonClick = () => {
     if (!loggedIn) {
-      history.replace({ pathname: '/login' });
+      history.push({ pathname: '/login' });
       return;
     }
     if (bun !== null) {
+      history.push({
+        pathname: '/',
+        state: {
+          background: location
+        }
+      });
       //@ts-ignore
       dispatch(setOrder(
         [].concat(

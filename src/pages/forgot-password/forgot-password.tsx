@@ -34,16 +34,6 @@ const ForgotPassword = () => {
     history.push(_location);
   }
 
-  if (localStorage.getItem('refreshToken')) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/'
-        }}
-      />
-    );
-  }
-
   return (
     <section className={forgetPasswordStyles.container}>
       <h2 className={forgetPasswordStyles.title}>Восстановление пароля</h2>

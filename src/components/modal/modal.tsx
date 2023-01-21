@@ -17,7 +17,6 @@ const modalRoot = document.getElementById('root-modal') as HTMLDivElement;
 
 const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     window.addEventListener('keydown', closeEsc)
@@ -32,13 +31,7 @@ const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
   }
 
   const onClose = () => {
-    history.replace({
-      pathname: `/`,
-      state: null
-    });
-    dispatch(removeIngredient());
-    //@ts-ignore
-    dispatch(cleanOrder());
+    history.goBack();
   }
 
   return ReactDOM.createPortal(

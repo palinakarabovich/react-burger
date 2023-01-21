@@ -24,16 +24,6 @@ const Register = () => {
     dispatch(register(userData));
   }
 
-  if (localStorage.getItem('refreshToken')) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/'
-        }}
-      />
-    );
-  }
-
   return (
     <section className={registerStyles.container}>
       <h2 className={registerStyles.title}>Регистрация</h2>

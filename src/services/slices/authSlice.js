@@ -4,6 +4,7 @@ const authSlice = createSlice({
   name: 'user',
   initialState: {
     user: {},
+    userChecked: false,
     userRequest: false,
     userSuccess: false,
     userError: false,
@@ -13,6 +14,7 @@ const authSlice = createSlice({
   reducers: {
     getUserRequest: (state, action) => {
       return {
+        userChecked: false,
         userRequest: true,
         userSuccess: false,
         userError: false,
@@ -22,6 +24,7 @@ const authSlice = createSlice({
     },
     getUserRequestSuccessful: (state, action) => {
       return {
+        userChecked: true,
         user: action.payload,
         userRequest: false,
         userSuccess: true,
@@ -32,6 +35,7 @@ const authSlice = createSlice({
     },
     getUserRequestError: (state, action) => {
       return {
+        userChecked: false,
         userRequest: false,
         userSuccess: false,
         userError: true,
@@ -42,6 +46,7 @@ const authSlice = createSlice({
     removeUser: (state, action) => {
       return {
         user: {},
+        userChecked: false,
         userRequest: false,
         userSuccess: false,
         userError: false,
@@ -51,6 +56,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequest: (state, action) => {
       return {
+        userChecked: false,
         userRequest: true,
         userSuccess: false,
         userError: false,
@@ -60,6 +66,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequestSuccessful: (state, action) => {
       return {
+        userChecked: false,
         user: action.payload,
         userRequest: false,
         userSuccess: true,
@@ -70,6 +77,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequestError: (state, action) => {
       return {
+        userChecked: false,
         userRequest: false,
         userSuccess: false,
         userError: true,
