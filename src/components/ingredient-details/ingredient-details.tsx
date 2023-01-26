@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 const IngredientDetails = () => {
 
-  const { item } = useSelector((store) => store.currentIngredient);
+  const { item } = useSelector((store: any): any => store.currentIngredient);
 
   return (
     <><img src={item?.image_large} className={ingredientDetailsStyles.img} alt={item?.name} />

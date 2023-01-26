@@ -1,6 +1,5 @@
 import { orderRequest, orderSuccess, orderFail } from "../slices/orderSlice";
 import { SERVER_URL } from "../../utils/constans";
-import checkResponse from "../../utils/checkResponse";
 import { clean } from "../slices/constructorSlice";
 import checkToken from "../../utils/checkToken";
 import { getCookie } from "../../utils/cookie";

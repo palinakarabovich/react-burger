@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
 import Loader from '../loader/loader';
-import orderDatalsStyles from './order-details.module.css'
-
+import orderDatalsStyles from './order-details.module.css';
 const OrderDetails = () => {
 
-  const { order, orderRequest, orderSuccess } = useSelector((store) => store.order);
+  const { order, orderRequest, orderSuccess } = useSelector((store: any): any => store.order);
 
   return (
     <section className={orderDatalsStyles.section}>

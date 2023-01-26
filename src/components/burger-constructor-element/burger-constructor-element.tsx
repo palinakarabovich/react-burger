@@ -4,25 +4,24 @@ import { useDrag, useDrop } from 'react-dnd'
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { changeIngredientsOrder } from '../../services/slices/constructorSlice';
-import PropTypes from 'prop-types';
-import { ingredientType } from '../../utils/constans';
+import { TIngredientDrag, DraggableTypes } from '../../types';
 
-const BurgerConstructorElement = ({ type, ingredient, index, handleClose, isLocked, isDrag }) => {
+const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ type, ingredient, index, handleClose, isLocked, isDrag }) => {
 
-  const ref = React.useRef()
+  const ref = React.useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
 
   const [{ opacity }, drag] = useDrag({
-    type: 'constructorIngredients',
-    item: { index },
+    type: DraggableTypes.constructorIngredients,
+    item: { index } as TIngredientDrag,
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1
     }),
   });
 
   const [{ border }, drop] = useDrop({
-    accept: 'constructorIngredients',
-    drop(item) {
+    accept: DraggableTypes.constructorIngredients,
+    drop(item: TIngredientDrag) {
       if (!ref.current) {
         return;
       }
@@ -56,12 +55,3 @@ const BurgerConstructorElement = ({ type, ingredient, index, handleClose, isLock
 };
 
 export default BurgerConstructorElement;
-
-BurgerConstructorElement.propTypes = {
-  type: PropTypes.string,
-  ingredient: PropTypes.shape(ingredientType),
-  index: PropTypes.number,
-  handleClose: PropTypes.func,
-  isLocked: PropTypes.bool,
-  isDrag: PropTypes.bool,
-};

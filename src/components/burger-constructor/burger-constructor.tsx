@@ -1,12 +1,25 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
 import { Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
-import { setBun, addIngredient, removeIngredient } from '../../services/slices/constructorSlice';
+import { setBun, addIngredient, removeIngredient, clean } from '../../services/slices/constructorSlice';
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
 import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
+import { useHistory, useLocation } from 'react-router-dom';
+import { TIngredient, DraggableTypes } from '../../types';
+
+const BurgerConstructor = () => {
+
+  const { items, price, bun } = useSelector((store: any): any => store.burgerConstructor);
+  const { loggedIn } = useSelector((store: any): any => store.user);
+  const { orderRequest, orderSuccess } = useSelector((store: any): any => store.order);
+  const [isPlaceholder, setPlaceholder] = React.useState<boolean>(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+=======
 import { useHistory } from 'react-router-dom';
 
 const BurgerConstructor = () => {
@@ -17,16 +30,22 @@ const BurgerConstructor = () => {
   const [isPlaceholder, setPlaceholder] = React.useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
 
   const [{ border }, dropTarget] = useDrop({
-    accept: 'ingredients',
-    drop(item) {
+    accept: DraggableTypes.ingredients,
+    drop(item: TIngredient) {
       dispatch(item.type === 'bun' ? setBun(item) : addIngredient(item))
     },
     collect: monitor => ({
       border: monitor.isOver() ? '2px solid #4C4CFF' : '',
     })
   });
+
+  React.useEffect(() => {
+    //@ts-ignore
+    orderSuccess && dispatch(clean());
+  }, [orderSuccess])
 
   React.useEffect(() => {
     if (bun !== null) {
@@ -36,13 +55,24 @@ const BurgerConstructor = () => {
 
   const onOrderButtonClick = () => {
     if (!loggedIn) {
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
+      history.push({ pathname: '/login' });
+=======
       history.replace({ pathname: '/login' });
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
       return;
     }
     if (bun !== null) {
+      history.push({
+        pathname: '/',
+        state: {
+          background: location
+        }
+      });
+      //@ts-ignore
       dispatch(setOrder(
         [].concat(
-          items.map(item => item._id),
+          items.map((item: TIngredient) => item._id),
           bun._id,
           bun._id
         ))
@@ -52,7 +82,7 @@ const BurgerConstructor = () => {
     }
   }
 
-  const handleClose = (index) => {
+  const handleClose = (index: number) => {
     dispatch(removeIngredient(index));
   }
 
@@ -64,7 +94,11 @@ const BurgerConstructor = () => {
         </div>
         <ul className={burgerConstructorStyles.list}>
           {items.length !== 0
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
+            ? items.map((i: TIngredient, index: number) => {
+=======
             ? items.map((i, index) => {
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
               if (i.type !== 'bun') {
                 return (
                   <li key={i.uuid} className={burgerConstructorStyles.element}>
@@ -87,7 +121,7 @@ const BurgerConstructor = () => {
         }
       </div>
       <div className={burgerConstructorStyles.info}>
-        <p className={burgerConstructorStyles.price}>{price}<span className={burgerConstructorStyles.currency}><CurrencyIcon /></span></p>
+        <p className={burgerConstructorStyles.price}>{price}<span className={burgerConstructorStyles.currency}><CurrencyIcon type="primary" /></span></p>
         <Button htmlType="button" type="primary" size="large" onClick={onOrderButtonClick}>
           {
             !orderRequest ? 'Оформить заказ' : 'Отправка...'

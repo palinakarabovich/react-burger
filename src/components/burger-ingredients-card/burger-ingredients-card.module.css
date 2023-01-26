@@ -55,3 +55,8 @@
   top: 0;
   right: 0;
 }
+
+.link{
+  color:rgba(242, 242, 243, 1);
+  text-decoration: none;
+}
