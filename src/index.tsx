@@ -13,6 +13,10 @@ ReactDOM.render(
         <App />
       </Provider>
     </BrowserRouter>
+<<<<<<< HEAD
   </React.StrictMode>,
   document.getElementById('root')
+=======
+  </React.StrictMode>
+>>>>>>> main
 );

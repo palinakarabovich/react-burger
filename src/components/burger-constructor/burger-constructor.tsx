@@ -6,6 +6,7 @@ import { setBun, addIngredient, removeIngredient, clean } from '../../services/s
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
 import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
 import { useHistory, useLocation } from 'react-router-dom';
 import { TIngredient, DraggableTypes } from '../../types';
 
@@ -18,6 +19,18 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+=======
+import { useHistory } from 'react-router-dom';
+
+const BurgerConstructor = () => {
+
+  const { items, price, bun } = useSelector((store) => store.burgerConstructor);
+  const { loggedIn } = useSelector((store) => store.user);
+  const { orderRequest } = useSelector((store) => store.order);
+  const [isPlaceholder, setPlaceholder] = React.useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
 
   const [{ border }, dropTarget] = useDrop({
     accept: DraggableTypes.ingredients,
@@ -42,7 +55,11 @@ const BurgerConstructor = () => {
 
   const onOrderButtonClick = () => {
     if (!loggedIn) {
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
       history.push({ pathname: '/login' });
+=======
+      history.replace({ pathname: '/login' });
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
       return;
     }
     if (bun !== null) {
@@ -77,7 +94,11 @@ const BurgerConstructor = () => {
         </div>
         <ul className={burgerConstructorStyles.list}>
           {items.length !== 0
+<<<<<<< HEAD:src/components/burger-constructor/burger-constructor.tsx
             ? items.map((i: TIngredient, index: number) => {
+=======
+            ? items.map((i, index) => {
+>>>>>>> main:src/components/burger-constructor/burger-constructor.jsx
               if (i.type !== 'bun') {
                 return (
                   <li key={i.uuid} className={burgerConstructorStyles.element}>
