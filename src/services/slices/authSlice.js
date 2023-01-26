@@ -4,10 +4,7 @@ const authSlice = createSlice({
   name: 'user',
   initialState: {
     user: {},
-<<<<<<< HEAD
     userChecked: false,
-=======
->>>>>>> main
     userRequest: false,
     userSuccess: false,
     userError: false,
@@ -17,10 +14,7 @@ const authSlice = createSlice({
   reducers: {
     getUserRequest: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         userRequest: true,
         userSuccess: false,
         userError: false,
@@ -30,10 +24,7 @@ const authSlice = createSlice({
     },
     getUserRequestSuccessful: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: true,
-=======
->>>>>>> main
         user: action.payload,
         userRequest: false,
         userSuccess: true,
@@ -44,10 +35,7 @@ const authSlice = createSlice({
     },
     getUserRequestError: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         userRequest: false,
         userSuccess: false,
         userError: true,
@@ -58,10 +46,7 @@ const authSlice = createSlice({
     removeUser: (state, action) => {
       return {
         user: {},
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         userRequest: false,
         userSuccess: false,
         userError: false,
@@ -71,10 +56,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequest: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         userRequest: true,
         userSuccess: false,
         userError: false,
@@ -84,10 +66,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequestSuccessful: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         user: action.payload,
         userRequest: false,
         userSuccess: true,
@@ -98,10 +77,7 @@ const authSlice = createSlice({
     },
     getUserUpdateRequestError: (state, action) => {
       return {
-<<<<<<< HEAD
         userChecked: false,
-=======
->>>>>>> main
         userRequest: false,
         userSuccess: false,
         userError: true,
