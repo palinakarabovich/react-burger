@@ -15,6 +15,7 @@
   flex-direction: column;
   composes: pt-10 from global;
   composes: pb-15 from global;
+  z-index: 10;
 }
 
 .closeButton {

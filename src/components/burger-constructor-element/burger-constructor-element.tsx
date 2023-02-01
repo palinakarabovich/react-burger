@@ -1,15 +1,15 @@
 import burgerConstructorElementStyles from './burger-constructor-element.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag, useDrop } from 'react-dnd'
-import { useDispatch } from 'react-redux';
 import React from 'react';
 import { changeIngredientsOrder } from '../../services/slices/constructorSlice';
 import { TIngredientDrag, DraggableTypes } from '../../types';
+import { useTypedDispatch } from '../../services';
 
 const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ type, ingredient, index, handleClose, isLocked, isDrag }) => {
 
   const ref = React.useRef<HTMLDivElement>(null)
-  const dispatch = useDispatch()
+  const dispatch = useTypedDispatch();
 
   const [{ opacity }, drag] = useDrag({
     type: DraggableTypes.constructorIngredients,
@@ -30,6 +30,7 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
       if (dragIndex === hoverIndex) {
         return;
       } else {
+        if (dragIndex !== undefined && hoverIndex !== undefined)
         dispatch(changeIngredientsOrder([dragIndex, hoverIndex]))
       }
     },

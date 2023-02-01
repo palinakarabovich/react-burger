@@ -1,7 +1,7 @@
 import { Redirect, Route, RouteProps, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import { getUser } from '../../services/actions/authActions';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 type TLocationTemplate = {
   from?: any;
@@ -11,12 +11,11 @@ const ProtectedRoute: React.FC<RouteProps & { children?: React.ReactNode; onlyFo
   { onlyForAuth, children, ...rest }) => {
 
   const location = useLocation<TLocationTemplate>();
-  const { loggedIn } = useSelector((store: any) => store.user);
-  const dispatch = useDispatch();
+  const { loggedIn } = useTypedSelector((store) => store.user);
+  const dispatch = useTypedDispatch();
 
   React.useEffect(() => {
     if (!loggedIn) {
-      //@ts-ignore
       dispatch(getUser());
     }
   }, []);

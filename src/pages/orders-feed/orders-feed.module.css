@@ -1,0 +1,113 @@
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderList {
+  width: 584px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: calc(100vh - 188px);
+  overflow-y: scroll;
+  padding-right: 16px;
+}
+
+.orderList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orderList::-webkit-scrollbar-track {
+  background-color: rgba(47, 47, 55, 1);
+}
+
+.orderList::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 133, 173, 1);
+}
+
+.order {
+  composes: mb-4 from global;
+}
+
+.order:last-child {
+  margin: 0;
+}
+
+.page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1244px;
+  margin: 0 auto;
+}
+
+.title {
+  composes: text_type_main-large from global;
+  composes: mt-10 from global;
+  composes: mb-5 from global;
+}
+
+.container {
+  width: 582px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  composes: ml-15 from global;
+  height: calc(100vh - 188px);
+}
+
+.orders {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block {
+  width: 272px;
+  composes: mb-15 from global;
+}
+
+.ordersTitle {
+  composes: text_type_main-medium from global;
+  composes: mb-6 from global;
+  margin-top: 0;
+}
+
+.numberList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+  height: calc(100vh - 770px);
+  overflow-x: scroll;
+}
+
+.number {
+  composes: text_type_digits-default from global;
+}
+
+.summarize {
+  composes: mb-15 from global;
+}
+
+.summarize:last-child {
+  margin: 0;
+}
+
+.total {
+  composes: text_type_main-medium from global;
+  margin: 0;
+}
+
+.sum {
+  composes: text_type_digits-large from global;
+  margin: 0;
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+}

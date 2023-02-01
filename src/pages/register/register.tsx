@@ -2,14 +2,14 @@ import registerStyles from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
 import React from 'react';
 import { EmailInput, PasswordInput, Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../services/actions/authActions';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 const Register = () => {
 
   const [userData, setUserData] = React.useState<{ name: string; email: string; password: string }>({ name: '', email: '', password: '' });
-  const dispatch = useDispatch();
-  const { userSuccess } = useSelector((store: any) => store.user);
+  const dispatch = useTypedDispatch();
+  const { userSuccess } = useTypedSelector((store) => store.user);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -20,7 +20,6 @@ const Register = () => {
 
   const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //@ts-ignore
     dispatch(register(userData));
   }
 

@@ -15,6 +15,7 @@ const refreshToken = () => {
 
 const checkToken = async (url: string, options: TCheckTokenHeader) => {
   try {
+    //@ts-ignore
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch (err) {
@@ -24,6 +25,7 @@ const checkToken = async (url: string, options: TCheckTokenHeader) => {
       localStorage.setItem('refreshToken', refreshData.refreshToken);
       setCookie('accessToken', refreshData.accessToken);
       options.headers.authorization = refreshData.accessToken;
+      //@ts-ignore
       const res = await fetch(url, options);
       return await checkResponse(res);
     } else {

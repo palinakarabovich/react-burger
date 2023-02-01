@@ -39,5 +39,33 @@ export type TCheckTokenHeader = {
   headers: {
     [key: string]: string;
     authorization: string;
-  }
+  };
+  body?: string;
+  mode?: string,
+  cache?: string,
+  credentials?: string,
 };
+
+export interface IOrder {
+  ingredients: Array<string>;
+  _id: string;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+}
+
+export interface IUser {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
+export interface IOrderSubmitted {
+success: boolean;
+name: string;
+order: IOrder;
+}
+
+

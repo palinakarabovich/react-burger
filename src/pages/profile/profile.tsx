@@ -1,19 +1,19 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Switch, useRouteMatch } from 'react-router-dom';
 import Loader from '../../components/loader/loader';
 import profileStyles from './profile.module.css';
 import { logout } from '../../services/actions/authActions';
 import UserInfo from '../../components/user-info/user-info';
 import ProtectedRoute from '../../components/protected-route/protected-route';
+import PersonalOrdersInfo from '../../components/personal-orders-feed/personal-orders-feed';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 const Profile = () => {
 
-  const { userSuccess } = useSelector((store: any) => store.user);
-  const dispatch = useDispatch();
+  const { userSuccess } = useTypedSelector((store) => store.user);
+  const dispatch = useTypedDispatch();
   const { path } = useRouteMatch<{ path: string }>();
 
   const handleLogout = () => {
-    //@ts-ignore
     dispatch(logout());
   }
 
@@ -35,7 +35,7 @@ const Profile = () => {
                 <UserInfo />
               </ProtectedRoute>
               <ProtectedRoute onlyForAuth exact={true} path={`${path}/orders/`}>
-                <>orders</>
+                <PersonalOrdersInfo />
               </ProtectedRoute>
             </Switch>
           </div>

@@ -21,7 +21,7 @@ const AppHeader: React.FunctionComponent = () => {
       setNav({ constructor: true, orders: false, profile: false })
     } else if (pathname.includes('/profile')) {
       setNav({ constructor: false, orders: false, profile: true })
-    } else if (pathname === '/order-feed') {
+    } else if (pathname === '/feed') {
       setNav({ constructor: false, orders: true, profile: false })
     } else {
       setNav(({ constructor: false, orders: false, profile: false }));
@@ -33,7 +33,7 @@ const AppHeader: React.FunctionComponent = () => {
       <div className={appHeaderStyles.container}>
         <nav className={appHeaderStyles.nav}>
           <Link to='/' className={appHeaderStyles.link}><NavItem Icon={BurgerIcon} description='Конструктор' active={nav.constructor} /></Link>
-          <Link to='/order-feed' className={appHeaderStyles.link}><NavItem Icon={ListIcon} description='Лента заказов' active={nav.orders} /></Link>
+          <Link to='/feed' className={appHeaderStyles.link}><NavItem Icon={ListIcon} description='Лента заказов' active={nav.orders} /></Link>
         </nav>
         <Link to='/' className={appHeaderStyles.logo}>
           <Logo />

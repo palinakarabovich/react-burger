@@ -1,22 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TIngredient } from '../../types';
+
+export type TIngredientsSlice = {
+  items: Array<TIngredient>;
+  itemsRequest: boolean;
+  itemsSuccess: boolean;
+  itemsError: boolean;
+}
+
+const initialState: TIngredientsSlice = {
+  items: [],
+  itemsRequest: false,
+  itemsSuccess: false,
+  itemsError: false
+}
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
-  initialState: {
-    items: [],
-    itemsRequest: false,
-    itemsSuccess: false,
-    itemsError: false
-  },
+  initialState,
   reducers: {
-    ingredientsRequest: (state, action) => {
+    ingredientsRequest: () => {
       return {
+        items: [],
         itemsRequest: true,
         itemsSuccess: false,
         itemsError: false,
       }
     },
-    ingredientsSuccess: (state, action) => {
+    ingredientsSuccess: (state, action: PayloadAction<Array<TIngredient>>) => {
       return {
         items: action.payload,
         itemsRequest: false,
@@ -24,8 +35,9 @@ const ingredientsSlice = createSlice({
         itemsError: false,
       }
     },
-    ingredientsFail: (state, action) => {
+    ingredientsFail: () => {
       return {
+        items: [],
         itemsRequest: false,
         itemsSuccess: false,
         itemsError: true,

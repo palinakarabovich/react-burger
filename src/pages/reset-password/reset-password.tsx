@@ -2,8 +2,8 @@ import resetPasswordStyles from './reset-password.module.css';
 import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
 import React from 'react';
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword } from '../../services/actions/authActions';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 interface ILocationType {
   requested?: boolean;
@@ -12,8 +12,8 @@ interface ILocationType {
 const ResetPassword = () => {
 
   const [userData, setUserData] = React.useState<{ password: string; token: string }>({ password: '', token: '' });
-  const dispatch = useDispatch();
-  const { requestChangePasswordSuccess } = useSelector((store: any) => store.resetPassword);
+  const dispatch = useTypedDispatch();
+  const { requestChangePasswordSuccess } = useTypedSelector((store: any) => store.resetPassword);
   const history = useHistory();
   const { state } = useLocation<ILocationType>();
   const passwordWasRequested = state?.requested;
@@ -27,7 +27,6 @@ const ResetPassword = () => {
 
   const handleResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //@ts-ignore
     dispatch(resetPassword(userData));
   };
 
