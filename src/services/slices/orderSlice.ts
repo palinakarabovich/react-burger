@@ -31,7 +31,6 @@ const orderSlice = createSlice({
       }
     },
     orderSuccess: (state, action: PayloadAction<IOrderSubmitted>) => {
-      console.log(action.payload)
       return {
         order: action.payload,
         orderRequest: false,

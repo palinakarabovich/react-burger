@@ -1,6 +1,5 @@
 import OrderItem from '../../components/order-item/order-item';
 import orderFeedStyles from './orders-feed.module.css';
-import { orderData } from '../../assets/orderData';
 import { useTypedDispatch, useTypedSelector } from '../../services';
 import React from 'react';
 import { wsInit, wsActions } from '../../services/slices/ordersAllSlice';
@@ -20,7 +19,7 @@ const OrdersFeed = () => {
   React.useEffect(() => {
     dispatch(wsInit());
     return () => {
-      dispatch(wsActions.onClose)
+      dispatch(wsActions.onClose());
     }
   }, []);
 

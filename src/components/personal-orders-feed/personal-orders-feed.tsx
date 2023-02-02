@@ -16,7 +16,7 @@ const PersonalOrdersInfo = () => {
   React.useEffect(() => {
     dispatch(wsAuthInit());
     return () => {
-      dispatch(wsActionsAuth.onClose)
+      dispatch(wsActionsAuth.onClose());
     }
   }, []);
 

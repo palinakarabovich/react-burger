@@ -19,7 +19,6 @@ const checkToken = async (url: string, options: TCheckTokenHeader) => {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch (err) {
-    console.log(err);
     if (err === 403) {
       const refreshData = await refreshToken();
       localStorage.setItem('refreshToken', refreshData.refreshToken);
