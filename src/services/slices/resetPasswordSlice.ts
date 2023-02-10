@@ -1,62 +1,88 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+type TResetPassword = {
+  requestResetPassword: boolean;
+  requestResetPasswordSuccess: boolean;
+  requestResetPasswordError: boolean;
+  requestChangePassword: boolean;
+  requestChangePasswordSuccess: boolean;
+  requestChangePasswordError: boolean;
+}
+
+const initialState: TResetPassword = {
+  requestResetPassword: false,
+  requestResetPasswordSuccess: false,
+  requestResetPasswordError: false,
+  requestChangePassword: false,
+  requestChangePasswordSuccess: false,
+  requestChangePasswordError: false,
+}
+
 const resetPassword = createSlice({
   name: 'resetPassword',
-  initialState: {
-    requestResetPassword: false,
-    requestResetPasswordSuccess: false,
-    requestResetPasswordError: false,
-    requestChangePassword: false,
-    requestChangePasswordSuccess: false,
-    requestChangePasswordError: false,
-  },
+  initialState,
   reducers: {
-    getNewPasswordRequest: (state, action) => {
+    getNewPasswordRequest: () => {
       return {
         requestResetPassword: true,
         requestResetPasswordSuccess: false,
-        requestResetPasswordError: false
+        requestResetPasswordError: false,
+        requestChangePassword: false,
+        requestChangePasswordSuccess: false,
+        requestChangePasswordError: false,
       }
     },
-    getNewPasswordRequestSuccess: (state, action) => {
+    getNewPasswordRequestSuccess: () => {
       return {
         requestResetPassword: false,
         requestResetPasswordSuccess: true,
-        requestResetPasswordError: false
+        requestResetPasswordError: false,
+        requestChangePassword: false,
+        requestChangePasswordSuccess: false,
+        requestChangePasswordError: false,
       }
     },
-    getNewPasswordRequestError: (state, action) => {
+    getNewPasswordRequestError: () => {
       return {
         requestResetPassword: false,
         requestResetPasswordSuccess: false,
-        requestResetPasswordError: true
+        requestResetPasswordError: true,
+        requestChangePassword: false,
+        requestChangePasswordSuccess: false,
+        requestChangePasswordError: false,
       }
     },
-    changePasswordRequest: (state, action) => {
+    changePasswordRequest: () => {
       return {
         requestResetPasswordSuccess: true,
         requestChangePassword: true,
         requestChangePasswordSuccess: false,
         requestChangePasswordError: false,
+        requestResetPasswordError: false,
+        requestResetPassword: false,
       }
     },
-    changePasswordRequestSuccess: (state, action) => {
+    changePasswordRequestSuccess: () => {
       return {
         requestResetPasswordSuccess: true,
         requestChangePassword: false,
         requestChangePasswordSuccess: true,
         requestChangePasswordError: false,
+        requestResetPasswordError: false,
+        requestResetPassword: false,
       }
     },
-    changePasswordRequestError: (state, action) => {
+    changePasswordRequestError: () => {
       return {
         requestResetPasswordSuccess: true,
         requestChangePassword: false,
         requestChangePasswordSuccess: false,
         requestChangePasswordError: true,
+        requestResetPasswordError: false,
+        requestResetPassword: false,
       }
     },
-    cleanResetPassword: (state, action) => {
+    cleanResetPassword: () => {
       return {
         requestResetPassword: false,
         requestResetPasswordSuccess: false,

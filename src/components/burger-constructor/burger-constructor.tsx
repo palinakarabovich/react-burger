@@ -1,6 +1,6 @@
 import burgerConstructorStyles from './burger-constructor.module.css'
 import { Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 import { useDrop } from 'react-dnd';
 import { setBun, addIngredient, removeIngredient, clean } from '../../services/slices/constructorSlice';
 import BurgerConstructorElement from '../burger-constructor-element/burger-constructor-element';
@@ -11,11 +11,11 @@ import { TIngredient, DraggableTypes } from '../../types';
 
 const BurgerConstructor = () => {
 
-  const { items, price, bun } = useSelector((store: any): any => store.burgerConstructor);
-  const { loggedIn } = useSelector((store: any): any => store.user);
-  const { orderRequest, orderSuccess } = useSelector((store: any): any => store.order);
+  const { items, price, bun } = useTypedSelector((store) => store.burgerConstructor);
+  const { loggedIn } = useTypedSelector((store) => store.user);
+  const { orderRequest, orderSuccess } = useTypedSelector((store) => store.order);
   const [isPlaceholder, setPlaceholder] = React.useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const history = useHistory();
   const location = useLocation();
 
@@ -30,7 +30,6 @@ const BurgerConstructor = () => {
   });
 
   React.useEffect(() => {
-    //@ts-ignore
     orderSuccess && dispatch(clean());
   }, [orderSuccess])
 
@@ -52,14 +51,11 @@ const BurgerConstructor = () => {
           background: location
         }
       });
-      //@ts-ignore
-      dispatch(setOrder(
-        [].concat(
-          items.map((item: TIngredient) => item._id),
-          bun._id,
-          bun._id
-        ))
-      );
+      dispatch(setOrder(new Array<string>().concat(
+        items.map((item: TIngredient) => item._id),
+        bun._id,
+        bun._id
+      )));
     } else {
       setPlaceholder(true);
     }

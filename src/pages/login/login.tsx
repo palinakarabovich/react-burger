@@ -1,21 +1,14 @@
 import loginStyles from './login.module.css';
-import { Link, Redirect, useLocation, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../services/actions/authActions';
-
-type TLocationTemplate = {
-  from?: any;
-}
+import { useTypedDispatch } from '../../services';
 
 const Login = () => {
 
   const [userData, setUserData] = React.useState<{ email: string; password: string }>({ email: '', password: '' });
-  const dispatch = useDispatch();
-  const { userSuccess } = useSelector((store: any) => store.user);
-  const location = useLocation<TLocationTemplate>();
-  const { from } = location.state || { from: { pathname: "/" } };
+  const dispatch = useTypedDispatch();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -26,7 +19,6 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //@ts-ignore
     dispatch(login(userData));
   }
 

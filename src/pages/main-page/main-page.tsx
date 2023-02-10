@@ -1,18 +1,17 @@
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients';
 import mainStyles from './main-page.module.css';
 import BurgerConstructor from '../../components/burger-constructor/burger-constructor';
-import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import { getUser } from '../../services/actions/authActions';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 const MainPage = () => {
 
-  const { loggedIn } = useSelector((store: any) => store.user);
-  const dispatch = useDispatch();
+  const { loggedIn } = useTypedSelector((store) => store.user);
+  const dispatch = useTypedDispatch();
 
   React.useEffect(() => {
     if (!loggedIn && localStorage.getItem('refreshToken')) {
-      //@ts-ignore
       dispatch(getUser());
     }
   }, [dispatch])

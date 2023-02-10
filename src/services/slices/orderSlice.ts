@@ -1,24 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IOrderSubmitted } from '../../types';
+
+export type TOrderSlice = {
+  order: IOrderSubmitted | undefined
+  orderRequest: boolean;
+  orderSuccess: boolean;
+  orderError: boolean;
+  orderModalOpen: boolean;
+}
+
+const initialState: TOrderSlice = {
+  order: undefined,
+  orderRequest: false,
+  orderSuccess: false,
+  orderError: false,
+  orderModalOpen: false,
+}
 
 const orderSlice = createSlice({
   name: 'order',
-  initialState: {
-    order: {},
-    orderRequest: false,
-    orderSuccess: false,
-    orderError: false,
-    orderModalOpen: false,
-  },
+  initialState,
   reducers: {
-    orderRequest: (state, action) => {
+    orderRequest: () => {
       return {
+        order: undefined,
         orderRequest: true,
         orderSuccess: false,
         orderError: false,
         orderModalOpen: true,
       }
     },
-    orderSuccess: (state, action) => {
+    orderSuccess: (state, action: PayloadAction<IOrderSubmitted>) => {
       return {
         order: action.payload,
         orderRequest: false,
@@ -27,17 +39,18 @@ const orderSlice = createSlice({
         orderModalOpen: true,
       }
     },
-    orderFail: (state, action) => {
+    orderFail: () => {
       return {
+        order: undefined,
         orderRequest: false,
         orderSuccess: false,
         orderError: true,
         orderModalOpen: false,
       }
     },
-    cleanOrder: (state, action) => {
+    cleanOrder: () => {
       return {
-        order: {},
+        order: undefined,
         orderRequest: false,
         orderSuccess: false,
         orderError: false,

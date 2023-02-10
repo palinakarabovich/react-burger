@@ -1,11 +1,11 @@
 import burgerIngredientsCardStyles from './burger-ingredients-card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { useLocation, Link } from 'react-router-dom';
 import { addIngredient } from '../../services/slices/ingredientDetailsSlice';
 import { TIngredient, DraggableTypes } from '../../types';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 interface IBurgerIngredientsCard {
   ingredient: TIngredient;
@@ -14,10 +14,10 @@ interface IBurgerIngredientsCard {
 const BurgerIngredientsCard: React.FunctionComponent<IBurgerIngredientsCard> = ({ ingredient }) => {
 
   const [quantity, setQuantity] = React.useState<number>(0);
-  const chosenIngredients = useSelector((store: any): any => store.burgerConstructor.items);
+  const chosenIngredients = useTypedSelector((store) => store.burgerConstructor.items);
   const [selectedBun, setSelectedBun] = React.useState<boolean>(false);
-  const { bun } = useSelector((store: any): any => store.burgerConstructor);
-  const dispatch = useDispatch();
+  const { bun } = useTypedSelector((store) => store.burgerConstructor);
+  const dispatch = useTypedDispatch();
   const location = useLocation();
 
   const [{ opacity }, ref] = useDrag({
@@ -41,7 +41,6 @@ const BurgerIngredientsCard: React.FunctionComponent<IBurgerIngredientsCard> = (
   }, [bun]);
 
   const onClickIngredient = () => {
-    
     dispatch(addIngredient(ingredient));
   }
 

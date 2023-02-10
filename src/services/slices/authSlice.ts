@@ -1,19 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from '../../types';
+
+export type TAuthSlice = {
+  user: IUser | undefined;
+  userChecked: boolean;
+  userRequest: boolean;
+  userSuccess: boolean;
+  userError: boolean;
+  loggedIn: boolean;
+  authDataReceived: boolean;
+}
+
+const initialState: TAuthSlice = {
+  user: undefined,
+  userChecked: false,
+  userRequest: false,
+  userSuccess: false,
+  userError: false,
+  loggedIn: false,
+  authDataReceived: false
+}
 
 const authSlice = createSlice({
   name: 'user',
-  initialState: {
-    user: {},
-    userChecked: false,
-    userRequest: false,
-    userSuccess: false,
-    userError: false,
-    loggedIn: false,
-    authDataReceived: false
-  },
+  initialState,
   reducers: {
-    getUserRequest: (state, action) => {
+    getUserRequest: (state) => {
       return {
+        user: undefined,
         userChecked: false,
         userRequest: true,
         userSuccess: false,
@@ -22,7 +36,7 @@ const authSlice = createSlice({
         authDataReceived: state.authDataReceived
       }
     },
-    getUserRequestSuccessful: (state, action) => {
+    getUserRequestSuccessful: (state, action: PayloadAction<IUser>) => {
       return {
         userChecked: true,
         user: action.payload,
@@ -33,8 +47,9 @@ const authSlice = createSlice({
         authDataReceived: true
       }
     },
-    getUserRequestError: (state, action) => {
+    getUserRequestError: () => {
       return {
+        user: undefined,
         userChecked: false,
         userRequest: false,
         userSuccess: false,
@@ -43,9 +58,9 @@ const authSlice = createSlice({
         authDataReceived: true
       }
     },
-    removeUser: (state, action) => {
+    removeUser: () => {
       return {
-        user: {},
+        user: undefined,
         userChecked: false,
         userRequest: false,
         userSuccess: false,
@@ -54,8 +69,9 @@ const authSlice = createSlice({
         authDataReceived: false,
       }
     },
-    getUserUpdateRequest: (state, action) => {
+    getUserUpdateRequest: (state) => {
       return {
+        user: state.user,
         userChecked: false,
         userRequest: true,
         userSuccess: false,
@@ -64,7 +80,7 @@ const authSlice = createSlice({
         authDataReceived: state.authDataReceived
       }
     },
-    getUserUpdateRequestSuccessful: (state, action) => {
+    getUserUpdateRequestSuccessful: (state, action: PayloadAction<IUser>) => {
       return {
         userChecked: false,
         user: action.payload,
@@ -75,8 +91,9 @@ const authSlice = createSlice({
         authDataReceived: state.authDataReceived
       }
     },
-    getUserUpdateRequestError: (state, action) => {
+    getUserUpdateRequestError: (state) => {
       return {
+        user: state.user,
         userChecked: false,
         userRequest: false,
         userSuccess: false,

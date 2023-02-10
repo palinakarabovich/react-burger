@@ -5,7 +5,6 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import OrderDetails from '../order-details/order-details';
 import { getIngredients } from '../../services/actions/ingredientsActions';
-import { useDispatch, useSelector } from 'react-redux';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Switch, Route, useHistory } from 'react-router-dom';
@@ -19,6 +18,10 @@ import ProtectedRoute from '../protected-route/protected-route';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import MainPage from '../../pages/main-page/main-page';
+import OrdersFeed from '../../pages/orders-feed/orders-feed';
+import OrderInfo from '../order-info/order-info';
+import Order from '../../pages/order/order';
+import { useTypedDispatch, useTypedSelector } from '../../services';
 
 type TLocationTemplate = {
   background?: any;
@@ -26,20 +29,16 @@ type TLocationTemplate = {
 }
 
 function App() {
-  const { itemsSuccess } = useSelector((store: any): any => store.ingredients);
-  const dispatch = useDispatch();
+  const { itemsSuccess } = useTypedSelector((store) => store.ingredients);
+  const dispatch = useTypedDispatch();
   const history = useHistory();
   const location = useLocation<TLocationTemplate>();
   let background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background;
   const modalWithIngredientWasOpen = location.state?.openIngredientModal;
 
-  console.log(modalWithIngredientWasOpen);
-
   React.useEffect(() => {
-    //@ts-ignore
     dispatch(getIngredients());
   }, [dispatch]);
-
 
   return (
     <div className={appStyles.app}>
@@ -47,10 +46,13 @@ function App() {
         <AppHeader />
         {itemsSuccess
           && (
-            <Switch location={background || location }>
+            <Switch location={background || location}>
               <Route exact path='/'>
                 <MainPage />
               </Route>
+              <ProtectedRoute onlyForAuth exact path='/profile/orders/:id'>
+                <Order />
+              </ProtectedRoute>
               <ProtectedRoute onlyForAuth path='/profile'>
                 <Profile />
               </ProtectedRoute>
@@ -66,9 +68,14 @@ function App() {
               <ProtectedRoute onlyForAuth={false} exact path='/reset-password'>
                 <ResetPassword />
               </ProtectedRoute>
-              <Route exact path='/order-feed' />
+              <Route exact path='/feed'>
+                <OrdersFeed />
+              </Route>
               <Route exact path='/ingredients/:id'>
                 <Ingredient />
+              </Route>
+              <Route exact path='/feed/:id'>
+                <Order />
               </Route>
               <Route>
                 <NotFound />
@@ -80,6 +87,8 @@ function App() {
         {background || modalWithIngredientWasOpen ?
           (<>
             <Route path='/' exact={true} children={<Modal title=''><OrderDetails /></Modal>} />
+            <Route path='/feed/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
+            <Route path='/profile/orders/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
             <Route path='/ingredients/:id' children={<Modal title='Детали ингредиента'><IngredientDetails /></Modal>} />
           </>) : <></>
         }

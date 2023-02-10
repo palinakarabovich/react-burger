@@ -1,8 +1,8 @@
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import BurgerIngredientsList from '../burger-ingredients-list/burger-ingredients-list'
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { TIngredient, IngredientType } from '../../types';
+import { useTypedSelector } from '../../services';
 
 interface ITypes {
   name: string;
@@ -12,7 +12,7 @@ interface ITypes {
 const types: Array<ITypes> = [{ name: 'Булки', type: IngredientType.bun }, { name: 'Соусы', type: IngredientType.sauce }, { name: 'Начинки', type: IngredientType.main }];
 
 const BurgerIngredients = () => {
-  const { items } = useSelector((store: any): any => store.ingredients);
+  const { items } = useTypedSelector((store) => store.ingredients);
   const [selectedCategory, setSelectedcategory] = React.useState<number>(0);
 
   const containerRef = React.useRef<HTMLDivElement>(null);

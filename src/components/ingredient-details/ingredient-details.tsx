@@ -1,9 +1,9 @@
+import { useTypedSelector } from '../../services';
 import ingredientDetailsStyles from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
 
 const IngredientDetails = () => {
 
-  const { item } = useSelector((store: any): any => store.currentIngredient);
+  const { item } = useTypedSelector((store) => store.currentIngredient);
 
   return (
     <><img src={item?.image_large} className={ingredientDetailsStyles.img} alt={item?.name} />
