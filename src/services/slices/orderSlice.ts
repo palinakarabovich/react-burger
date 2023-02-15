@@ -9,7 +9,7 @@ export type TOrderSlice = {
   orderModalOpen: boolean;
 }
 
-const initialState: TOrderSlice = {
+export const initialState: TOrderSlice = {
   order: undefined,
   orderRequest: false,
   orderSuccess: false,

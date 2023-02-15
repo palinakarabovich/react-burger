@@ -11,7 +11,7 @@ export type TAuthSlice = {
   authDataReceived: boolean;
 }
 
-const initialState: TAuthSlice = {
+export const initialState: TAuthSlice = {
   user: undefined,
   userChecked: false,
   userRequest: false,

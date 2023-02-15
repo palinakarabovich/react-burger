@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import { TIngredient } from '../../types';
 
 type TCoconstructorSlice = {
@@ -8,7 +7,7 @@ type TCoconstructorSlice = {
   bun: TIngredient | null;
 }
 
-const initialState: TCoconstructorSlice = {
+export const initialState: TCoconstructorSlice = {
   items: [],
   price: 0,
   bun: null
@@ -19,7 +18,7 @@ const constructorSlice = createSlice({
   initialState,
   reducers: {
     addIngredient: (state, action: PayloadAction<TIngredient>) => {
-      state.items.push({ ...action.payload, uuid: uuidv4() });
+      state.items.push({ ...action.payload});
       state.price += action.payload.price;
     },
     setBun: (state, action: PayloadAction<TIngredient>) => {

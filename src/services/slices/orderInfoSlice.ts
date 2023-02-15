@@ -5,7 +5,7 @@ type TOrderInfoSlice = {
   order: any | null;
 }
 
-const initialState: TOrderInfoSlice = {
+export const initialState: TOrderInfoSlice = {
   order: null
 }
 

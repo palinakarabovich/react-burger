@@ -10,7 +10,7 @@ import { IUser } from "../../types";
 
 export const register = (user: IUser) : TypedThunk => dispatch => {
   dispatch(getUserRequest());
-  fetch(`${SERVER_URL}/auth/register`,
+  return fetch(`${SERVER_URL}/auth/register`,
     {
       method: 'POST',
       body: JSON.stringify(user),
@@ -29,7 +29,7 @@ export const register = (user: IUser) : TypedThunk => dispatch => {
 
 export const getNewPassword = (user: IUser) : TypedThunk => dispatch => {
   dispatch(getNewPasswordRequest());
-  fetch(`${SERVER_URL}/password-reset`,
+  return fetch(`${SERVER_URL}/password-reset`,
     {
       method: 'POST',
       body: JSON.stringify(user),
@@ -46,7 +46,7 @@ export const getNewPassword = (user: IUser) : TypedThunk => dispatch => {
 
 export const resetPassword = (user: IUser) : TypedThunk => dispatch => {
   dispatch(changePasswordRequest());
-  fetch(`${SERVER_URL}/password-reset/reset`,
+  return fetch(`${SERVER_URL}/password-reset/reset`,
     {
       method: 'POST',
       body: JSON.stringify(user),
@@ -63,7 +63,7 @@ export const resetPassword = (user: IUser) : TypedThunk => dispatch => {
 
 export const login = (user: IUser) : TypedThunk => dispatch => {
   dispatch(getUserRequest());
-  fetch(`${SERVER_URL}/auth/login`,
+  return fetch(`${SERVER_URL}/auth/login`,
     {
       method: 'POST',
       body: JSON.stringify(user),
@@ -83,9 +83,8 @@ export const login = (user: IUser) : TypedThunk => dispatch => {
 
 export const getUser = () : TypedThunk => dispatch => {
   dispatch(getUserRequest());
-  const cookie = getCookie('accessToken');
-  if(cookie !== undefined){
-    checkToken(`${SERVER_URL}/auth/user`, {
+  const cookie = getCookie('accessToken') || ' ';
+    return checkToken(`${SERVER_URL}/auth/user`, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache',
@@ -99,14 +98,12 @@ export const getUser = () : TypedThunk => dispatch => {
         dispatch(getUserRequestSuccessful(data.user));
       })
       .catch(() => dispatch(getUserRequestError()));
-  }
 }
 
 export const updateUser = (user: IUser) : TypedThunk => dispatch => {
   dispatch(getUserUpdateRequest());
-  const cookie = getCookie('accessToken');
-  if(cookie !== undefined) {
-    checkToken(`${SERVER_URL}/auth/user`, {
+  const cookie = getCookie('accessToken') || ' ';
+    return checkToken(`${SERVER_URL}/auth/user`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -118,12 +115,11 @@ export const updateUser = (user: IUser) : TypedThunk => dispatch => {
         dispatch(getUserUpdateRequestSuccessful(data.user));
       })
       .catch(() => dispatch(getUserUpdateRequestError()));
-  }
 }
 
 export const logout = () : TypedThunk => dispatch => {
   dispatch(getUserRequest());
-  fetch(`${SERVER_URL}/auth/logout`,
+  return fetch(`${SERVER_URL}/auth/logout`,
     {
       method: 'POST',
       body: JSON.stringify({ token: localStorage.getItem('refreshToken') }),
@@ -132,7 +128,7 @@ export const logout = () : TypedThunk => dispatch => {
       },
     })
     .then(res => checkResponse(res))
-    .then((data) => {
+    .then(() => {
       setCookie('accessToken', '');
       localStorage.clear();
       dispatch(removeUser());

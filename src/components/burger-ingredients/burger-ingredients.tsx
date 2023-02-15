@@ -69,9 +69,9 @@ const BurgerIngredients = () => {
         bunsItems.length !== 0 && saucesItems.length !== 0 && mainItems.length !== 0
         && (
           <div className={burgerIngredientsStyles.container} ref={containerRef} onScroll={handleScroll}>
-            <BurgerIngredientsList ref={bunsRef} title={types[0].name} ingredients={bunsItems} />
-            <BurgerIngredientsList ref={sauceRef} title={types[1].name} ingredients={saucesItems} />
-            <BurgerIngredientsList ref={mainRef} title={types[2].name} ingredients={mainItems} />
+            <BurgerIngredientsList ref={bunsRef} title={types[0].name} ingredients={bunsItems} id='bun'/>
+            <BurgerIngredientsList ref={sauceRef} title={types[1].name} ingredients={saucesItems} id='sause'/>
+            <BurgerIngredientsList ref={mainRef} title={types[2].name} ingredients={mainItems} id='main'/>
           </div>
         )
       }

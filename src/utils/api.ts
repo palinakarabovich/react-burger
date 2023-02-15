@@ -100,7 +100,7 @@ export const logoutUser = async () => {
 }
 
 export const setOrderRequest = async (ingredients: Array<TIngredient>) => {
-  const cookie = getCookie('accessToken');
+  const cookie = getCookie('accessToken') || ' ';
   if (cookie !== undefined) {
     const res = await checkToken(`${SERVER_URL}/orders`, {
       method: 'POST',
@@ -114,7 +114,7 @@ export const setOrderRequest = async (ingredients: Array<TIngredient>) => {
   }
 }
 
-export const getIngredientsRequest = async () => {
-  const res = await fetch(`${SERVER_URL}/ingredients`)
-  return checkResponse(res);
+export const getIngredientsRequest = () => {
+  return fetch(`${SERVER_URL}/ingredients`)
+  .then(res => checkResponse(res))
 }
