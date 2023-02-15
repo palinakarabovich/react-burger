@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 require('@4tw/cypress-drag-drop');
 
 describe('main page works fine', function () {
@@ -18,7 +19,7 @@ describe('main page works fine', function () {
     cy.get('[name="password"]').type('cat123');
     cy.get('button').contains('Войти').click();
     cy.get('button').contains('Оформить заказ').click();
-    cy.wait('20000');
+    cy.wait(20000);
     cy.get('#modal-close-icon').click();
   });
 
