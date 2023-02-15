@@ -9,7 +9,7 @@ type TResetPassword = {
   requestChangePasswordError: boolean;
 }
 
-const initialState: TResetPassword = {
+export const initialState: TResetPassword = {
   requestResetPassword: false,
   requestResetPasswordSuccess: false,
   requestResetPasswordError: false,

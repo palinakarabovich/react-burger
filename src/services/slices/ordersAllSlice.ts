@@ -27,7 +27,7 @@ type TMessage = {
   orders: Array<IOrder>;
 }
 
-const initialState: TSockets = {
+export const initialState: TSockets = {
   wsConnected: false,
   orders: [],
   ordersAuth: [],

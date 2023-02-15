@@ -8,6 +8,7 @@ import { setOrder } from '../../services/actions/orderActions';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { TIngredient, DraggableTypes } from '../../types';
+import { v4 as uuidv4 } from 'uuid';
 
 const BurgerConstructor = () => {
 
@@ -67,7 +68,7 @@ const BurgerConstructor = () => {
 
   return (
     <section className={burgerConstructorStyles.wrapper} ref={dropTarget}>
-      <div className={`${burgerConstructorStyles.ingredients} ${bun === null && items.length === 0 ? burgerConstructorStyles.ingredientsEmpty : ''}`} style={{ border }}>
+      <div className={`${burgerConstructorStyles.ingredients} ${bun === null && items.length === 0 ? burgerConstructorStyles.ingredientsEmpty : ''}`} style={{ border }} id='burger-constructor'>
         <div className={burgerConstructorStyles.bun}>
           {bun && <BurgerConstructorElement type='top' ingredient={bun} isLocked={true} />}
         </div>
@@ -76,7 +77,7 @@ const BurgerConstructor = () => {
             ? items.map((i: TIngredient, index: number) => {
               if (i.type !== 'bun') {
                 return (
-                  <li key={i.uuid} className={burgerConstructorStyles.element}>
+                  <li key={uuidv4()} className={burgerConstructorStyles.element}>
                     <div className={burgerConstructorStyles.dragIcon}>
                       <DragIcon type="primary" />
                     </div>

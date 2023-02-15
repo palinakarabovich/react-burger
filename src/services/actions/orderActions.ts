@@ -5,11 +5,10 @@ import checkToken from "../../utils/checkToken";
 import { getCookie } from "../../utils/cookie";
 import { TypedThunk } from "..";
 
-export const setOrder = (ingredients: Array<string>) : TypedThunk => dispatch => {
+export const setOrder = (ingredients: Array<string>): TypedThunk => dispatch => {
   dispatch(orderRequest());
-  const cookie = getCookie('accessToken');
-  if(cookie !== undefined){
-    checkToken(`${SERVER_URL}/orders`, {
+  const cookie = getCookie('accessToken') || ' ';
+    return checkToken(`${SERVER_URL}/orders`, {
       method: 'POST',
       body: JSON.stringify({ ingredients }),
       headers: {
@@ -24,5 +23,4 @@ export const setOrder = (ingredients: Array<string>) : TypedThunk => dispatch =>
       .catch(err => {
         dispatch(orderFail())
       })
-  }  
-}
+  }

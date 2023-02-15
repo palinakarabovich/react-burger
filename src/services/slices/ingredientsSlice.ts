@@ -8,7 +8,7 @@ export type TIngredientsSlice = {
   itemsError: boolean;
 }
 
-const initialState: TIngredientsSlice = {
+export const initialState: TIngredientsSlice = {
   items: [],
   itemsRequest: false,
   itemsSuccess: false,

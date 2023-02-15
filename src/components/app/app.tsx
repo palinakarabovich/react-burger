@@ -47,6 +47,9 @@ function App() {
         {itemsSuccess
           && (
             <Switch location={background || location}>
+              <Route exact path='/react-burger'>
+                <MainPage />
+              </Route>
               <Route exact path='/'>
                 <MainPage />
               </Route>

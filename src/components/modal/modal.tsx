@@ -36,7 +36,7 @@ const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
       <ModalOverlay onClose={onClose} />
       <div className={modalStyles.container}>
         <h2 className={modalStyles.title}>{title}</h2>
-        <div className={modalStyles.closeButton} onClick={onClose}><CloseIcon type="primary" /></div>
+        <div className={modalStyles.closeButton} onClick={onClose} id='modal-close-icon'><CloseIcon type="primary" /></div>
         {children}
       </div>
     </>, modalRoot)
