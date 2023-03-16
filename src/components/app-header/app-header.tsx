@@ -19,9 +19,9 @@ const AppHeader: React.FunctionComponent = () => {
   React.useEffect(() => {
     if (pathname === '/') {
       setNav({ constructor: true, orders: false, profile: false })
-    } else if (pathname.includes('/profile')) {
+    } else if (pathname.includes('/react-burger/profile')) {
       setNav({ constructor: false, orders: false, profile: true })
-    } else if (pathname === '/feed') {
+    } else if (pathname === '/react-burger/feed') {
       setNav({ constructor: false, orders: true, profile: false })
     } else {
       setNav(({ constructor: false, orders: false, profile: false }));
@@ -32,13 +32,13 @@ const AppHeader: React.FunctionComponent = () => {
     <header className={appHeaderStyles.header}>
       <div className={appHeaderStyles.container}>
         <nav className={appHeaderStyles.nav}>
-          <Link to='/' className={appHeaderStyles.link}><NavItem Icon={BurgerIcon} description='Конструктор' active={nav.constructor} /></Link>
-          <Link to='/feed' className={appHeaderStyles.link}><NavItem Icon={ListIcon} description='Лента заказов' active={nav.orders} /></Link>
+          <Link to='/react-burger' className={appHeaderStyles.link}><NavItem Icon={BurgerIcon} description='Constructor' active={nav.constructor} /></Link>
+          <Link to='/react-burger/feed' className={appHeaderStyles.link}><NavItem Icon={ListIcon} description='Order feed' active={nav.orders} /></Link>
         </nav>
-        <Link to='/' className={appHeaderStyles.logo}>
+        <Link to='/react-burger' className={appHeaderStyles.logo}>
           <Logo />
         </Link>
-        <Link to='/profile' className={appHeaderStyles.link}><NavItem Icon={ProfileIcon} description='Личный кабинет' active={nav.profile} /></Link>
+        <Link to='/react-burger/profile' className={appHeaderStyles.link}><NavItem Icon={ProfileIcon} description='Profile' active={nav.profile} /></Link>
       </div>
     </header >
   )

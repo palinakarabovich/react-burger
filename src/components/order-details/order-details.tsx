@@ -15,10 +15,10 @@ const OrderDetails = () => {
           && (
             <>
               <p className={orderDatalsStyles.number}>{order?.order.number}</p>
-              <p className={orderDatalsStyles.identifier}>идентификатор заказа</p>
+              <p className={orderDatalsStyles.identifier}>order number</p>
               <div className={orderDatalsStyles.icon} />
-              <p className={orderDatalsStyles.notification}> Ваш заказ начали готовить</p>
-              <p className={orderDatalsStyles.action}>Дождитесь готовности на орбитальной станции</p>
+              <p className={orderDatalsStyles.notification}> We are preparing your order</p>
+              <p className={orderDatalsStyles.action}>Wait at the orbital station</p>
             </>
           )
       }

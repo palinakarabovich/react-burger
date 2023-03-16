@@ -57,7 +57,7 @@ const UserInfo = () => {
           <>
             <Input
               type={'text'}
-              placeholder={'Имя'}
+              placeholder={'Name'}
               name='name'
               disabled={inputsDisabled.name}
               value={form.name}
@@ -68,7 +68,7 @@ const UserInfo = () => {
               
               <Input
               type={'email'}
-              placeholder={'Логин'}
+              placeholder={'Email'}
               name='email'
               disabled={inputsDisabled.email}
               value={form.email}
@@ -79,7 +79,7 @@ const UserInfo = () => {
               
               <Input
               type={'password'}
-              placeholder={'Пароль'}
+              placeholder={'Password'}
               icon={inputsDisabled.password ? 'EditIcon' : 'CloseIcon'}
               value={form.password}
               name={'password'}
@@ -95,10 +95,10 @@ const UserInfo = () => {
         && (
           <div className={userInfoStyles.buttonsGroup}>
             <Button htmlType="button" type="secondary" size="medium" onClick={onClickCancel}>
-              Отмена
+              Cancel
             </Button>
             <Button htmlType="submit" type="primary" size="medium">
-              Сохранить
+              Save
             </Button>
           </div>
         )

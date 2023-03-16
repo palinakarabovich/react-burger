@@ -21,7 +21,7 @@ const ProtectedRoute: React.FC<RouteProps & { children?: React.ReactNode; onlyFo
   }, []);
 
   if (!onlyForAuth && loggedIn) {
-    const { from } = location.state || { from: { pathname: "/" } };
+    const { from } = location.state || { from: { pathname: "/react-burger" } };
     return (
       <Route {...rest}>
         <Redirect to={from} />
@@ -32,7 +32,7 @@ const ProtectedRoute: React.FC<RouteProps & { children?: React.ReactNode; onlyFo
   if (onlyForAuth && !loggedIn) {
     return (
       <Route {...rest}>
-        <Redirect to={{ pathname: "/login", state: { from: location } }} />
+        <Redirect to={{ pathname: "/react-burger/login", state: { from: location } }} />
       </Route>
     );
   }

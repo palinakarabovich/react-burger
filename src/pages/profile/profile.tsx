@@ -20,9 +20,9 @@ const Profile = () => {
   return (
     <section className={profileStyles.container}>
       <div className={profileStyles.nav}>
-        <NavLink exact to={`${path}`} className={profileStyles.link} activeClassName={profileStyles.linkActive}>Профиль</NavLink>
-        <NavLink exact to={`${path}/orders/`} className={profileStyles.link} activeClassName={profileStyles.linkActive}>История заказов</NavLink>
-        <NavLink exact to='/' className={profileStyles.link} activeClassName={profileStyles.linkActive} onClick={handleLogout}>Выход</NavLink>
+        <NavLink exact to={`${path}`} className={profileStyles.link} activeClassName={profileStyles.linkActive}>Profile</NavLink>
+        <NavLink exact to={`${path}/orders/`} className={profileStyles.link} activeClassName={profileStyles.linkActive}>Order history</NavLink>
+        <NavLink exact to='/react-burger/' className={profileStyles.link} activeClassName={profileStyles.linkActive} onClick={handleLogout}>Logout</NavLink>
       </div>
 
       {

@@ -1,4 +1,4 @@
-import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import orderItemStyles from './order-item.module.css';
 import { TIngredient } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,6 +8,7 @@ import { IOrder } from '../../types';
 import { useLocation, Link } from 'react-router-dom';
 import { addOrder } from '../../services/slices/orderInfoSlice';
 import { useTypedDispatch, useTypedSelector } from '../../services';
+import { getTimeFromTimestamp } from '../../utils/getTimeFromTimestamp';
 
 interface IOrderProps {
   order: IOrder;
@@ -32,19 +33,19 @@ const OrderItem: React.FunctionComponent<IOrderProps> = ({ order, status }) => {
 
   return (
     <Link to={{
-      pathname: `${location.pathname === '/feed' ? `/feed/${order._id}` : `/profile/orders/${order._id}`}`,
+      pathname: `${location.pathname === '/react-burger/feed' ? `/react-burger/feed/${order._id}` : `/react-burger/profile/orders/${order._id}`}`,
       state: { background: location, openIngredientModal: true }
     }} className={orderItemStyles.link} onClick={() => showOrderDetails(order)}>
       <article className={orderItemStyles.item}>
         <div className={orderItemStyles.description}>
           <p className={orderItemStyles.number}>#{order.number}</p>
-          <p className={orderItemStyles.date}><FormattedDate date={new Date(order.createdAt)} /></p>
+          <p className={orderItemStyles.date}>{getTimeFromTimestamp(order.createdAt)}</p>
         </div>
         <h3 className={orderItemStyles.title} style={status ? { marginBottom: 0 } : { marginBottom: 24 }}>{order.name}</h3>
         {
           status && (
             <p className={orderItemStyles.status} style={order.status === 'done' ? { color: '#00CCCC' } : order.status === 'done' ? { color: '#F2F2F3' } : { color: 'FF0000' }}>
-              {order.status === 'done' ? 'Выполнен' : order.status === 'done' ? 'Готовится' : 'Отменен'}
+              {order.status === 'done' ? 'Ready' : order.status === 'done' ? 'Preparing' : 'Cancled'}
             </p>
           )
         }

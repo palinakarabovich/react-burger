@@ -9,7 +9,7 @@ interface ITypes {
   type: IngredientType;
 }
 
-const types: Array<ITypes> = [{ name: 'Булки', type: IngredientType.bun }, { name: 'Соусы', type: IngredientType.sauce }, { name: 'Начинки', type: IngredientType.main }];
+const types: Array<ITypes> = [{ name: 'Buns', type: IngredientType.bun }, { name: 'Sauсes', type: IngredientType.sauce }, { name: 'Fillings', type: IngredientType.main }];
 
 const BurgerIngredients = () => {
   const { items } = useTypedSelector((store) => store.ingredients);
@@ -59,7 +59,7 @@ const BurgerIngredients = () => {
 
   return (
     <section className={burgerIngredientsStyles.wrapper}>
-      <h2 className={burgerIngredientsStyles.title}>Соберите бургер</h2>
+      <h2 className={burgerIngredientsStyles.title}>Make your own burger</h2>
       <ul className={burgerIngredientsStyles.sort}>
         {
           types.map((t, index) => (<li onClick={() => scrollToCategory(index)} className={`${burgerIngredientsStyles.sortType} ${selectedCategory === index && burgerIngredientsStyles.sortTypeActive}`} key={index}>{t.name}</li>))

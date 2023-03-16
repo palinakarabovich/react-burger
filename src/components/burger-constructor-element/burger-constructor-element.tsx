@@ -45,7 +45,7 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
     <div draggable className={burgerConstructorElementStyles.element} style={{ opacity, border }} ref={ref}>
       <ConstructorElement
         type={type}
-        text={`${ingredient.name}${type === 'bottom' ? ' (низ)' : type === 'top' ? ' (вверх)' : ''}`}
+        text={`${ingredient.name}${type === 'bottom' ? ' (bottom)' : type === 'top' ? ' (top)' : ''}`}
         price={ingredient.price}
         thumbnail={ingredient.image}
         handleClose={handleClose}

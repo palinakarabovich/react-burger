@@ -1,9 +1,10 @@
 import orderInfoStyles from './order-info.module.css';
 import { countBurgerIngredients, countPrice, getIngredients } from '../../utils/ingredients';
-import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../loader/loader';
 import { useTypedSelector } from '../../services';
+import { getTimeFromTimestamp } from '../../utils/getTimeFromTimestamp';
 
 const OrderInfo = () => {
 
@@ -23,8 +24,8 @@ const OrderInfo = () => {
             <div className={orderInfoStyles.page} >
               <p className={orderInfoStyles.number}>#{order.number}</p>
               <h2 className={orderInfoStyles.title}>{order.name}</h2>
-              <p className={orderInfoStyles.status} style={order.status === 'done' ? {color: '#00CCCC'} : order.status === 'done' ? {color: '#F2F2F3'} : {color: 'FF0000'}}>{order.status === 'done' ? 'Выполнен' : order.status === 'done' ? 'Готовится' : 'Отменен'}</p>
-              <p className={orderInfoStyles.details}>Состав:</p>
+              <p className={orderInfoStyles.status} style={order.status === 'done' ? {color: '#00CCCC'} : order.status === 'done' ? {color: '#F2F2F3'} : {color: 'FF0000'}}>{order.status === 'done' ? 'Ready' : order.status === 'done' ? 'Preparing' : 'Canceled'}</p>
+              <p className={orderInfoStyles.details}>Details:</p>
               <ul className={orderInfoStyles.list}>
                 {
                   uniqueIngredients.map((i) => {
@@ -42,7 +43,7 @@ const OrderInfo = () => {
                 }
               </ul>
               <div className={orderInfoStyles.info}>
-                <p className={orderInfoStyles.date}><FormattedDate date={new Date(order.createdAt)} /></p>
+                <p className={orderInfoStyles.date}>{getTimeFromTimestamp(order.createdAt)}</p>
                 <div className={orderInfoStyles.block}>
                   <p className={orderInfoStyles.price}>{price}</p>
                   <span className={orderInfoStyles.icon}><CurrencyIcon type='primary' /></span>

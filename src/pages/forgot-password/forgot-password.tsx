@@ -27,7 +27,7 @@ const ForgotPassword = () => {
 
   if (requestResetPasswordSuccess) {
     const _location = {
-      pathname: `/reset-password`,
+      pathname: `/react-burger/reset-password`,
       state: { requested: true }
     }
     history.push(_location);
@@ -35,20 +35,20 @@ const ForgotPassword = () => {
 
   return (
     <section className={forgetPasswordStyles.container}>
-      <h2 className={forgetPasswordStyles.title}>Восстановление пароля</h2>
+      <h2 className={forgetPasswordStyles.title}>Forgot your password?</h2>
       <form className={forgetPasswordStyles.form} onSubmit={handleForgotPassword}>
         < EmailInput
           onChange={onChange}
           value={userData.email}
           name={'email'}
           isIcon={false}
-          placeholder={'Укажите e-mail'}
+          placeholder={'Email'}
         />
         <Button htmlType="submit" type="primary" size="medium">
-          Восстановить
+          Reset
         </Button>
       </form>
-      <p className={forgetPasswordStyles.info}>Вспомнили пароль?<Link className={forgetPasswordStyles.link} to='/login'>Войти</Link></p>
+      <p className={forgetPasswordStyles.info}>Remember the password?<Link className={forgetPasswordStyles.link} to='/react-burger/login'>Login</Link></p>
     </section>
   )
 }

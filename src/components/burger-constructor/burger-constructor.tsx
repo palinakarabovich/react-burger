@@ -42,12 +42,12 @@ const BurgerConstructor = () => {
 
   const onOrderButtonClick = () => {
     if (!loggedIn) {
-      history.push({ pathname: '/login' });
+      history.push({ pathname: '/react-burger/login' });
       return;
     }
     if (bun !== null) {
       history.push({
-        pathname: '/',
+        pathname: '/react-burger/',
         state: {
           background: location
         }
@@ -87,20 +87,20 @@ const BurgerConstructor = () => {
             }
             )
             : bun === null
-            && <p className={burgerConstructorStyles.placeholder}>Перетащите ингредиенты сюда</p>}
+            && <p className={burgerConstructorStyles.placeholder}>Drag the ingredients here</p>}
         </ul>
         <div className={burgerConstructorStyles.bun}>
           {bun && <BurgerConstructorElement type='bottom' ingredient={bun} isLocked={true} />}
         </div>
         {
-          isPlaceholder && <p className={burgerConstructorStyles.error}> Вы не можете заказать бургет без булочки :(</p>
+          isPlaceholder && <p className={burgerConstructorStyles.error}> You can not make a burger without a bun :(</p>
         }
       </div>
       <div className={burgerConstructorStyles.info}>
         <p className={burgerConstructorStyles.price}>{price}<span className={burgerConstructorStyles.currency}><CurrencyIcon type="primary" /></span></p>
         <Button htmlType="button" type="primary" size="large" onClick={onOrderButtonClick}>
           {
-            !orderRequest ? 'Оформить заказ' : 'Отправка...'
+            !orderRequest ? 'Place order' : 'Saving...'
           }
         </Button>
       </div>

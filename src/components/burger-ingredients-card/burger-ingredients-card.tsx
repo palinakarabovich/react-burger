@@ -46,7 +46,7 @@ const BurgerIngredientsCard: React.FunctionComponent<IBurgerIngredientsCard> = (
 
   return (
     <Link to={{
-      pathname: `/ingredients/${ingredient._id}`,
+      pathname: `/react-burger/ingredients/${ingredient._id}`,
       state: { background: location, openIngredientModal: true }
     }} className={burgerIngredientsCardStyles.link}>
       <article className={burgerIngredientsCardStyles.card} onClick={onClickIngredient} draggable style={{ opacity }} ref={ref}>
