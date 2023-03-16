@@ -15,6 +15,7 @@ Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-burger/
 
 ## Technologies
 - React
+- React-dnd
 - Redux Toot Kit
 - Redux Thunk
 - WebSockets
