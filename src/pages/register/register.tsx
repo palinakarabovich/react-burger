@@ -25,14 +25,14 @@ const Register = () => {
 
   return (
     <section className={registerStyles.container}>
-      <h2 className={registerStyles.title}>Регистрация</h2>
+      <h2 className={registerStyles.title}>Registration</h2>
       {
         !userSuccess
           ? (
             <form className={registerStyles.form} onSubmit={handleRegistration}>
               <Input
                 type={'text'}
-                placeholder={'Имя'}
+                placeholder={'Name'}
                 onChange={onChange}
                 value={userData.name}
                 name={'name'}
@@ -44,15 +44,17 @@ const Register = () => {
                 value={userData.email}
                 name={'email'}
                 isIcon={false}
+                placeholder={'Email'}
               />
               <PasswordInput
                 onChange={onChange}
                 value={userData.password}
                 name={'password'}
                 extraClass="mb-2"
+                placeholder={'Password'}
               />
               <Button htmlType="submit" type="primary" size="medium">
-                Зарегистрироваться
+                Register
               </Button>
             </form>
           )
@@ -63,7 +65,7 @@ const Register = () => {
           />
       }
 
-      <p className={registerStyles.info}>Уже зарегистрированы?<Link className={registerStyles.link} to='/login'>Войти</Link></p>
+      <p className={registerStyles.info}>Have an account?<Link className={registerStyles.link} to='/react-burger/login'>Login</Link></p>
     </section>
   )
 }

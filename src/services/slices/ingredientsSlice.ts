@@ -28,6 +28,7 @@ const ingredientsSlice = createSlice({
       }
     },
     ingredientsSuccess: (state, action: PayloadAction<Array<TIngredient>>) => {
+      console.log(action.payload);
       return {
         items: action.payload,
         itemsRequest: false,

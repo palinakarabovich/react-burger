@@ -11,19 +11,19 @@ const IngredientDetails = () => {
         <h3 className={ingredientDetailsStyles.name}>{item?.name}</h3>
         <ul className={ingredientDetailsStyles.container}>
           <li className={ingredientDetailsStyles.info}>
-            Калории,ккал
+            Calories, kcal
             <span className={ingredientDetailsStyles.number}>{item?.calories}</span>
           </li>
           <li className={ingredientDetailsStyles.info}>
-            Белки, г
+            Proteins, g
             <span className={ingredientDetailsStyles.number}>{item?.proteins}</span>
           </li>
           <li className={ingredientDetailsStyles.info}>
-            Жиры, г
+            Fats, g
             <span className={ingredientDetailsStyles.number}>{item?.fat}</span>
           </li>
           <li className={ingredientDetailsStyles.info}>
-            Углеводы, г
+            Carbohydrates, g
             <span className={ingredientDetailsStyles.number}>{item?.carbohydrates}</span>
           </li>
         </ul>

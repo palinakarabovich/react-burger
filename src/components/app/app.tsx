@@ -50,34 +50,31 @@ function App() {
               <Route exact path='/react-burger'>
                 <MainPage />
               </Route>
-              <Route exact path='/'>
-                <MainPage />
-              </Route>
-              <ProtectedRoute onlyForAuth exact path='/profile/orders/:id'>
+              <ProtectedRoute onlyForAuth exact path='/react-burger/profile/orders/:id'>
                 <Order />
               </ProtectedRoute>
-              <ProtectedRoute onlyForAuth path='/profile'>
+              <ProtectedRoute onlyForAuth path='/react-burger/profile'>
                 <Profile />
               </ProtectedRoute>
-              <ProtectedRoute onlyForAuth={false} exact path='/login'>
+              <ProtectedRoute onlyForAuth={false} exact path='/react-burger/login'>
                 <Login />
               </ProtectedRoute>
-              <ProtectedRoute onlyForAuth={false} exact path='/register'>
+              <ProtectedRoute onlyForAuth={false} exact path='/react-burger/register'>
                 <Register />
               </ProtectedRoute>
-              <ProtectedRoute onlyForAuth={false} exact path='/forgot-password'>
+              <ProtectedRoute onlyForAuth={false} exact path='/react-burger/forgot-password'>
                 <ForgotPassword />
               </ProtectedRoute>
-              <ProtectedRoute onlyForAuth={false} exact path='/reset-password'>
+              <ProtectedRoute onlyForAuth={false} exact path='/react-burger/reset-password'>
                 <ResetPassword />
               </ProtectedRoute>
-              <Route exact path='/feed'>
+              <Route exact path='/react-burger/feed'>
                 <OrdersFeed />
               </Route>
-              <Route exact path='/ingredients/:id'>
+              <Route exact path='/react-burger/ingredients/:id'>
                 <Ingredient />
               </Route>
-              <Route exact path='/feed/:id'>
+              <Route exact path='/react-burger/feed/:id'>
                 <Order />
               </Route>
               <Route>
@@ -89,10 +86,10 @@ function App() {
 
         {background || modalWithIngredientWasOpen ?
           (<>
-            <Route path='/' exact={true} children={<Modal title=''><OrderDetails /></Modal>} />
-            <Route path='/feed/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
-            <Route path='/profile/orders/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
-            <Route path='/ingredients/:id' children={<Modal title='Детали ингредиента'><IngredientDetails /></Modal>} />
+            <Route path='/react-burger/' exact={true} children={<Modal title=''><OrderDetails /></Modal>} />
+            <Route path='/react-burger/feed/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
+            <Route path='/react-burger/profile/orders/:id' exact={true} children={<Modal title=''><OrderInfo /></Modal>} />
+            <Route path='/react-burger/ingredients/:id' children={<Modal title='Ingredient information'><IngredientDetails /></Modal>} />
           </>) : <></>
         }
       </DndProvider>

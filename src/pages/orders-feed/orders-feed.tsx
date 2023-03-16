@@ -25,7 +25,7 @@ const OrdersFeed = () => {
 
   return (
     <div className={orderFeedStyles.page}>
-      <h2 className={orderFeedStyles.title}>Лента заказов</h2>
+      <h2 className={orderFeedStyles.title}>Real-time order feed</h2>
       {
         connected ?
           (
@@ -38,7 +38,7 @@ const OrdersFeed = () => {
               <div className={orderFeedStyles.container}>
                 <div className={orderFeedStyles.orders}>
                   <div className={orderFeedStyles.block}>
-                    <p className={orderFeedStyles.ordersTitle}>Готовы:</p>
+                    <p className={orderFeedStyles.ordersTitle}>Ready:</p>
                     <ul className={orderFeedStyles.numberList}>
                       {
                         ordersSuccess.map((order) => {
@@ -48,7 +48,7 @@ const OrdersFeed = () => {
                     </ul>
                   </div>
                   <div className={orderFeedStyles.block}>
-                    <p className={orderFeedStyles.ordersTitle}>В работе:</p>
+                    <p className={orderFeedStyles.ordersTitle}>Preparing:</p>
                     <ul className={orderFeedStyles.numberList}>
                       {
                         ordersCreated.map((order) => {
@@ -59,11 +59,11 @@ const OrdersFeed = () => {
                   </div>
                 </div>
                 <div className={orderFeedStyles.summarize}>
-                  <p className={orderFeedStyles.total}>Выполнено за все время:</p>
+                  <p className={orderFeedStyles.total}>Total burgers made:</p>
                   <p className={orderFeedStyles.sum}>{total}</p>
                 </div>
                 <div className={orderFeedStyles.summarize}>
-                  <p className={orderFeedStyles.total}>Выполнено за сегодня:</p>
+                  <p className={orderFeedStyles.total}>Burgers made today:</p>
                   <p className={orderFeedStyles.sum}>{totalToday}</p>
                 </div>
               </div>

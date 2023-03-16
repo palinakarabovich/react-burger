@@ -24,28 +24,28 @@ const Login = () => {
 
   return (
     <section className={loginStyles.container}>
-      <h2 className={loginStyles.title}>Вход</h2>
+      <h2 className={loginStyles.title}>Login</h2>
       <form className={loginStyles.form} onSubmit={handleLogin}>
         <EmailInput
           onChange={onChange}
           value={userData.email}
           name={'email'}
           isIcon={false}
-          placeholder={'E-mail'}
+          placeholder={'Email'}
         />
         <PasswordInput
           onChange={onChange}
           value={userData.password}
           name={'password'}
           extraClass="mb-2"
-          placeholder={'Пароль'}
+          placeholder={'Password'}
         />
         <Button htmlType="submit" type="primary" size="medium">
-          Войти
+          Login
         </Button>
       </form>
-      <p className={loginStyles.info}>Вы — новый пользователь?<Link className={loginStyles.link} to='/register'>Зарегистрироваться</Link></p>
-      <p className={loginStyles.info}>Забыли пароль?<Link className={loginStyles.link} to='/forgot-password'>Восстановить пароль</Link></p>
+      <p className={loginStyles.info}>New user?<Link className={loginStyles.link} to='/react-burger/register'>Register</Link></p>
+      <p className={loginStyles.info}>Forget the password?<Link className={loginStyles.link} to='/react-burger/forgot-password'>Reset password</Link></p>
     </section>
   )
 }

@@ -31,37 +31,37 @@ const ResetPassword = () => {
   };
 
   if (!passwordWasRequested) {
-    return <Redirect to='/forgot-password' />
+    return <Redirect to='/react-burger/forgot-password' />
   }
 
   if (requestChangePasswordSuccess) {
     history.replace({
-      pathname: `/login`,
+      pathname: `/react-burger/login`,
       state: null
     });
   }
 
   return (
     <section className={resetPasswordStyles.container}>
-      <h2 className={resetPasswordStyles.title}>Восстановление пароля</h2>
+      <h2 className={resetPasswordStyles.title}>Reset your password:</h2>
       <form className={resetPasswordStyles.form} onSubmit={handleResetPassword}>
         <PasswordInput
           onChange={onChange}
           value={userData.password}
           name={'password'}
           extraClass="mb-2"
-          placeholder={'Введите новый пароль'} />
+          placeholder={'New password'} />
         <Input
           type={'text'}
-          placeholder={'Введите код из письма'}
+          placeholder={'Code from the email'}
           onChange={onChange}
           value={userData.token}
           name={'token'} />
         <Button htmlType="submit" type="primary" size="medium">
-          Сохранить
+          Save
         </Button>
       </form>
-      <p className={resetPasswordStyles.info}>Вспомнили пароль?<Link className={resetPasswordStyles.link} to='/login'>Войти</Link></p>
+      <p className={resetPasswordStyles.info}>Remember the password?<Link className={resetPasswordStyles.link} to='/react-burger/login'>Login</Link></p>
     </section>
   )
 }
