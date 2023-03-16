@@ -2,7 +2,7 @@
 
 This is a burger ordering application that allows users to build their own burgers using the presented ingredients. Only authorized users can place orders. The app also features real-time order tracking on the server and a personal order history for each user.
 
-Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-burger/)
+Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-burger/). (email: cat@cat.cat, password: cat123 or create your own account)
 
 ## Features
 - User registration, login, and password recovery via email code
