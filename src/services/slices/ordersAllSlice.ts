@@ -21,7 +21,7 @@ export interface ISocketActions {
   onMessage: ActionCreatorWithPayload<any, string>;
 }
 
-type TMessage = {
+export type TMessage = {
   total: number;
   totalToday: number;
   orders: Array<IOrder>;

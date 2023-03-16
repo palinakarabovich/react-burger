@@ -1,6 +1,7 @@
 import { getCookie } from '../../utils/cookie';
 import { ISocketActions } from '../slices/ordersAllSlice';
 import { AnyAction, MiddlewareAPI } from '@reduxjs/toolkit';
+import { translateOrders } from '../../utils/translateOrders';
 
 export const socketMiddleware = (wsUrl: string, wsActions: ISocketActions, auth: boolean) => {
   return (store: MiddlewareAPI) => {
@@ -25,7 +26,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: ISocketActions, auth:
           const { data } = event;
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
-          dispatch(onMessage(restParsedData));
+          dispatch(onMessage(translateOrders(restParsedData)));
         }
         socket.onclose = () => {
           dispatch(onClose());
