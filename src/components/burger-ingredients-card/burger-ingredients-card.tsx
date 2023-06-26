@@ -45,11 +45,11 @@ const BurgerIngredientsCard: React.FunctionComponent<IBurgerIngredientsCard> = (
   }
 
   return (
-    <Link to={{
-      pathname: `/react-burger/ingredients/${ingredient._id}`,
-      state: { background: location, openIngredientModal: true }
-    }} className={burgerIngredientsCardStyles.link}>
-      <article className={burgerIngredientsCardStyles.card} onClick={onClickIngredient} draggable style={{ opacity }} ref={ref}>
+    <div className={burgerIngredientsCardStyles.card} onClick={onClickIngredient} draggable style={{ opacity }} ref={ref}>
+      <Link to={{
+        pathname: `/react-burger/ingredients/${ingredient._id}`,
+        state: { background: location, openIngredientModal: true }
+      }} className={burgerIngredientsCardStyles.link}>
         {quantity >= 1
           ? (<div className={burgerIngredientsCardStyles.quantity}>{quantity}</div>)
           : selectedBun
@@ -58,8 +58,8 @@ const BurgerIngredientsCard: React.FunctionComponent<IBurgerIngredientsCard> = (
         <img src={ingredient.image} className={burgerIngredientsCardStyles.image} alt={ingredient.name} />
         <p className={burgerIngredientsCardStyles.price}>{ingredient.price}<span className={burgerIngredientsCardStyles.currency}><CurrencyIcon type='primary' /></span></p>
         <h4 className={burgerIngredientsCardStyles.title}>{ingredient.name}</h4>
-      </article>
-    </Link>
+      </Link>
+    </div>
   )
 }
 

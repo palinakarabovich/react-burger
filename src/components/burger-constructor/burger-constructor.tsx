@@ -67,7 +67,7 @@ const BurgerConstructor = () => {
   }
 
   return (
-    <section className={burgerConstructorStyles.wrapper} ref={dropTarget}>
+    <div className={burgerConstructorStyles.wrapper} ref={dropTarget}>
       <div className={`${burgerConstructorStyles.ingredients} ${bun === null && items.length === 0 ? burgerConstructorStyles.ingredientsEmpty : ''}`} style={{ border }} id='burger-constructor'>
         <div className={burgerConstructorStyles.bun}>
           {bun && <BurgerConstructorElement type='top' ingredient={bun} isLocked={true} />}
@@ -104,7 +104,7 @@ const BurgerConstructor = () => {
           }
         </Button>
       </div>
-    </section>
+    </div>
   )
 }
 
