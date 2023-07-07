@@ -39,3 +39,21 @@
   justify-content: center;
   flex-direction: column;
 }
+
+@media screen and (max-width: 600px) {
+  .number{
+    font-size: 40px;
+  }
+  
+  .identifier{
+    font-size: 15px;
+  }
+
+  .notification{
+    text-align: center;
+  }
+
+  .action{
+    text-align: center;
+  }
+}

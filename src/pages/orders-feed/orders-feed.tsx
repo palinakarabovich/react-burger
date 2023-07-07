@@ -5,6 +5,7 @@ import React from 'react';
 import { wsInit, wsActions } from '../../services/slices/ordersAllSlice';
 import { IOrder } from '../../types';
 import Loader from '../../components/loader/loader';
+import { getCurrentDimension } from '../../utils/getCurrentDemention';
 
 const OrdersFeed = () => {
   const dispatch = useTypedDispatch();
@@ -32,7 +33,7 @@ const OrdersFeed = () => {
             <section className={orderFeedStyles.section}>
               <ul className={orderFeedStyles.orderList}>
                 {orders.map((o: IOrder) => (
-                  <li key={o.number} className={orderFeedStyles.order}><OrderItem order={o} status={false}/></li>
+                  <li key={o.number} className={orderFeedStyles.order}><OrderItem order={o} status={false} /></li>
                 ))}
               </ul>
               <div className={orderFeedStyles.container}>
