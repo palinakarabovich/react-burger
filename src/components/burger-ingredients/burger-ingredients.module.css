@@ -54,3 +54,39 @@
 .container::-webkit-scrollbar-thumb {
   background-color: rgba(133, 133, 173, 1);
 }
+
+@media screen and (max-width: 1100px){
+  .wrapper {
+    max-width: none;
+    width: 100%;
+  }
+
+  .title{
+    width: 100%;
+    text-align: center;
+  }
+
+  .sort{
+    width: 100%;
+  }
+
+  .sortType{
+    min-width: 33%;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .title{
+    font-size: 32px;
+    margin: 10px;
+  }
+
+  .sortType{
+    font-size: 12px;
+  }
+
+
+  .container{
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,23 @@
+
+.summary{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+}
+
+.price {
+  margin-top: 0;
+  margin-bottom: 0;
+  composes: text_type_digits-medium from global;
+  composes: mr-10 from global;
+}
+
+.currency {
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+  object-position: center;
+  margin-left: 9.5px;
+}

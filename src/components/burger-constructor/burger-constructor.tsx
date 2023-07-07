@@ -9,6 +9,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { TIngredient, DraggableTypes } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
+import { getCurrentDimension } from '../../utils/getCurrentDemention';
 
 const BurgerConstructor = () => {
 
@@ -19,6 +20,7 @@ const BurgerConstructor = () => {
   const dispatch = useTypedDispatch();
   const history = useHistory();
   const location = useLocation();
+  const [screenSize, setScreenSize] = React.useState(getCurrentDimension());
 
   const [{ border }, dropTarget] = useDrop({
     accept: DraggableTypes.ingredients,

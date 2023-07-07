@@ -12,7 +12,7 @@ const ingredientDetailsSlice = createSlice({
   name: 'currentIngredient',
   initialState,
   reducers: {
-    addIngredient: (state, action: PayloadAction<TIngredient>) => {
+    addIngredientDetails: (state, action: PayloadAction<TIngredient>) => {
       return {
         item: action.payload,
       }
@@ -26,4 +26,4 @@ const ingredientDetailsSlice = createSlice({
 });
 
 export default ingredientDetailsSlice.reducer;
-export const { addIngredient, removeIngredient } = ingredientDetailsSlice.actions;
+export const { addIngredientDetails, removeIngredient } = ingredientDetailsSlice.actions;
