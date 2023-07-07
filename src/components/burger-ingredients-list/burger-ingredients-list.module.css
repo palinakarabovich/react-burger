@@ -22,5 +22,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     row-gap: 20px;
     column-gap: 10px;
+    overflow: hidden;
   }
 }
