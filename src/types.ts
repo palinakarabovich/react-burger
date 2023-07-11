@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export enum IngredientType {
   bun = 'bun',
   sauce = 'sauce',
@@ -66,6 +68,19 @@ export interface IOrderSubmitted {
 success: boolean;
 name: string;
 order: IOrder;
+}
+
+export interface INav {
+  constructor: boolean;
+  orders: boolean;
+  profile: boolean;
+  ordersHistory?: boolean;
+}
+
+export interface INavProps {
+  location: INav,
+  menu?: boolean,
+  setMenu?: Dispatch<SetStateAction<boolean>>;
 }
 
 

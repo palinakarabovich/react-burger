@@ -1,0 +1,63 @@
+.container{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(28, 28, 33, 1);
+  z-index: 10;
+  height: 100vh;
+  width: 50%;
+}
+
+.title{
+  composes: text_type_main-large from global;
+  color: white;
+  margin: 0;
+  composes: p-5 from global;
+}
+
+.link{
+ text-decoration: none;
+}
+
+.link_profile{
+  text-decoration: none;
+  color: rgba(133, 133, 173, 1);
+  composes: text_type_main-default from global;
+}
+
+.link_profile:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.profile{
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile_list{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.icon_close{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1100px){
+  .container{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .container{
+    width: 100%;
+  }
+}
