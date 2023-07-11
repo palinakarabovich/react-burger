@@ -8,14 +8,30 @@
 }
 
 .container{
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
+  display: none;
+  position: fixed;
+  padding: 5px 20px;
   box-sizing: border-box;
+  top: 0;
+  left: 0;
+  background-color: rgba(28, 28, 33, 1);
 }
 
-.icon__logo{
-
+.icon_menu{
+  cursor: pointer;
 }
+
+.icon_logo{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+  .container{
+    display: flex;
+  }
+  
+}
+
