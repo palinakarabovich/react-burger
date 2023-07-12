@@ -22,11 +22,11 @@ export const socketMiddleware = (wsUrl: string, wsActions: ISocketActions, auth:
         socket.onerror = () => {
           dispatch(onError());
         }
-        socket.onmessage = event => {
+        socket.onmessage = async (event) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
-          dispatch(onMessage(translateOrders(restParsedData)));
+          dispatch(onMessage(await translateOrders(restParsedData)));
         }
         socket.onclose = () => {
           dispatch(onClose());

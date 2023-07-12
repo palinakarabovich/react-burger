@@ -65,8 +65,8 @@ const UserInfo = () => {
               onChange={onChange}
               onIconClick={() => onIconClick('name')}
               ref={nameRef} />
-              
-              <Input
+
+            <Input
               type={'email'}
               placeholder={'Email'}
               name='email'
@@ -76,8 +76,8 @@ const UserInfo = () => {
               onChange={onChange}
               onIconClick={() => onIconClick('email')}
               ref={emailRef} />
-              
-              <Input
+
+            <Input
               type={'password'}
               placeholder={'Password'}
               icon={inputsDisabled.password ? 'EditIcon' : 'CloseIcon'}
@@ -87,7 +87,7 @@ const UserInfo = () => {
               onChange={onChange}
               disabled={inputsDisabled.password}
               onIconClick={() => onIconClick('password')} />
-              </>
+          </>
         )
       }
       {

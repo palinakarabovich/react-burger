@@ -4,6 +4,7 @@ import React from 'react';
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { login } from '../../services/actions/authActions';
 import { useTypedDispatch } from '../../services';
+import Input from '../../components/input/input';
 
 const Login = () => {
 
@@ -26,20 +27,24 @@ const Login = () => {
     <section className={loginStyles.container}>
       <h2 className={loginStyles.title}>Login</h2>
       <form className={loginStyles.form} onSubmit={handleLogin}>
-        <EmailInput
-          onChange={onChange}
-          value={userData.email}
-          name={'email'}
-          isIcon={false}
-          placeholder={'Email'}
-        />
-        <PasswordInput
-          onChange={onChange}
-          value={userData.password}
-          name={'password'}
-          extraClass="mb-2"
-          placeholder={'Password'}
-        />
+          <EmailInput
+            onChange={onChange}
+            value={userData.email}
+            name={'email'}
+            isIcon={false}
+            placeholder={'Email'}
+            extraClass={loginStyles.input}
+          />
+        <div className={loginStyles.input}>
+          <PasswordInput
+            onChange={onChange}
+            value={userData.password}
+            name={'password'}
+            extraClass="mb-2"
+            placeholder={'Password'}
+          />
+        </div>
+        <Input />
         <Button htmlType="submit" type="primary" size="medium">
           Login
         </Button>

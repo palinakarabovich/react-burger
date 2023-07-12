@@ -32,3 +32,22 @@
 .order:last-child{
   margin: 0;
 }
+
+@media screen and (max-width: 1100px){
+  .page{
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 600){
+  .page{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+}
