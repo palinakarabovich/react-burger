@@ -1,0 +1,17 @@
+@media screen and (max-width: 600px) {
+  .input_size_default{
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .input_size_default{
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .input_size_default{
+    width: 250px;
+  }
+}

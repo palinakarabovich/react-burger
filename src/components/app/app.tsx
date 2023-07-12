@@ -23,6 +23,7 @@ import OrderInfo from '../order-info/order-info';
 import Order from '../../pages/order/order';
 import { useTypedDispatch, useTypedSelector } from '../../services';
 import OrderReview from '../../pages/order-review/order-review';
+import './custom_styles_for_ux-library.css'
 
 type TLocationTemplate = {
   background?: any;
