@@ -47,7 +47,7 @@ const NavMobile: React.FC<INavProps> = ({ location, menu, setMenu }) => {
               {
                 isProfileClicked && (
                   <div className={navStyles.profile_list}>
-                    <Link to='/react-burger/profile' className={navStyles.link} onClick={handleMenuClick}><NavItem description='Personal Information' active={!location.ordersHistory} /></Link>
+                    <Link to='/react-burger/profile' className={navStyles.link} onClick={handleMenuClick}><NavItem description='Personal Information' active={location.profile &&!location.ordersHistory ? true : false} /></Link>
                     <Link to='/react-burger/profile/orders' className={navStyles.link} onClick={handleMenuClick}><NavItem description='Orders history' active={location.ordersHistory} /></Link>
                     {userSuccess && <Link to='/react-burger' className={navStyles.link_profile} onClick={handleSignOut}><NavItem description='Sign out' /></Link>}
                   </div>

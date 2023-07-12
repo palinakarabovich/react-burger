@@ -52,6 +52,7 @@ const UserInfo = () => {
 
   return (
     <form className={userInfoStyles.form} onSubmit={onClickSave}>
+      <h2 className={userInfoStyles.title}>Your personal information:</h2>
       {
         form.name !== undefined && form.email !== undefined && form.password !== undefined && (
           <>
