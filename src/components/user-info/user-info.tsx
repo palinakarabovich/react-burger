@@ -52,6 +52,7 @@ const UserInfo = () => {
 
   return (
     <form className={userInfoStyles.form} onSubmit={onClickSave}>
+      <h2 className={userInfoStyles.title}>Your personal information:</h2>
       {
         form.name !== undefined && form.email !== undefined && form.password !== undefined && (
           <>
@@ -65,8 +66,8 @@ const UserInfo = () => {
               onChange={onChange}
               onIconClick={() => onIconClick('name')}
               ref={nameRef} />
-              
-              <Input
+
+            <Input
               type={'email'}
               placeholder={'Email'}
               name='email'
@@ -76,8 +77,8 @@ const UserInfo = () => {
               onChange={onChange}
               onIconClick={() => onIconClick('email')}
               ref={emailRef} />
-              
-              <Input
+
+            <Input
               type={'password'}
               placeholder={'Password'}
               icon={inputsDisabled.password ? 'EditIcon' : 'CloseIcon'}
@@ -87,7 +88,7 @@ const UserInfo = () => {
               onChange={onChange}
               disabled={inputsDisabled.password}
               onIconClick={() => onIconClick('password')} />
-              </>
+          </>
         )
       }
       {

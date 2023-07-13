@@ -34,8 +34,34 @@
   composes: text_type_main-large from global;
   margin: 0;
   width: 640px;
-  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+@media screen and (max-width: 1000px){
+  .container{
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 20px 30px;
+    box-sizing: border-box;
+  }
+
+  .closeButton{
+    width: 25px;
+    height: 25px;
+  }
+
+  .title{
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .closeButton{
+    top: 40px
+  }
+
 }

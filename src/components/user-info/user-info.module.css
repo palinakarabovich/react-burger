@@ -12,3 +12,41 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.title {
+  margin: 0;
+  composes: text_type_main-medium from global;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+
+@media screen and (max-width: 1100px) {
+  .title{
+    display: block;
+  }
+  
+  .form{
+    margin: 0 auto;
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form{
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .form{
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .form{
+    width: 250px;
+  }
+}

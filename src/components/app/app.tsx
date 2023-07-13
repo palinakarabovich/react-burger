@@ -22,6 +22,8 @@ import OrdersFeed from '../../pages/orders-feed/orders-feed';
 import OrderInfo from '../order-info/order-info';
 import Order from '../../pages/order/order';
 import { useTypedDispatch, useTypedSelector } from '../../services';
+import OrderReview from '../../pages/order-review/order-review';
+import './custom_styles_for_ux-library.css'
 
 type TLocationTemplate = {
   background?: any;
@@ -49,6 +51,9 @@ function App() {
             <Switch location={background || location}>
               <Route exact path='/react-burger'>
                 <MainPage />
+              </Route>
+              <Route exact path='/react-burger/order-review'>
+               <OrderReview />
               </Route>
               <ProtectedRoute onlyForAuth exact path='/react-burger/profile/orders/:id'>
                 <Order />

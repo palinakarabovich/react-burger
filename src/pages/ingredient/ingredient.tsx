@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import IngredientDetails from '../../components/ingredient-details/ingredient-details'
-import { addIngredient } from '../../services/slices/ingredientDetailsSlice'
+import { addIngredientDetails } from '../../services/slices/ingredientDetailsSlice'
 import ingredientStyles from './ingredient.module.css';
 import { TIngredient } from '../../types'
 import { useTypedDispatch, useTypedSelector } from '../../services';
@@ -14,7 +14,7 @@ const Ingredient = () => {
 
   React.useEffect(() => {
     if (ingredient !== undefined)
-    dispatch(addIngredient(ingredient));
+    dispatch(addIngredientDetails(ingredient));
   }, [])
 
 

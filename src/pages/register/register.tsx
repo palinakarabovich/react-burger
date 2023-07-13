@@ -1,7 +1,7 @@
 import registerStyles from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
 import React from 'react';
-import { EmailInput, PasswordInput, Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { register } from '../../services/actions/authActions';
 import { useTypedDispatch, useTypedSelector } from '../../services';
 
@@ -10,6 +10,7 @@ const Register = () => {
   const [userData, setUserData] = React.useState<{ name: string; email: string; password: string }>({ name: '', email: '', password: '' });
   const dispatch = useTypedDispatch();
   const { userSuccess } = useTypedSelector((store) => store.user);
+  const [isIconClicked, setIconClicked] = React.useState<boolean>(false)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -21,6 +22,10 @@ const Register = () => {
   const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(register(userData));
+  }
+
+  const handleIconlick = () => {
+    setIconClicked(!isIconClicked);
   }
 
   return (
@@ -39,19 +44,21 @@ const Register = () => {
                 size={'default'}
                 extraClass="ml-1"
               />
-              <EmailInput
+              <Input
                 onChange={onChange}
                 value={userData.email}
                 name={'email'}
-                isIcon={false}
                 placeholder={'Email'}
+                type='email'
               />
-              <PasswordInput
+              <Input
+                type={isIconClicked ? 'text' : 'password'}
                 onChange={onChange}
                 value={userData.password}
                 name={'password'}
-                extraClass="mb-2"
                 placeholder={'Password'}
+                icon={isIconClicked ? 'HideIcon' : 'ShowIcon'}
+                onIconClick={handleIconlick}
               />
               <Button htmlType="submit" type="primary" size="medium">
                 Register

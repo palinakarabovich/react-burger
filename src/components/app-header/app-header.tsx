@@ -1,26 +1,26 @@
-import appHeaderStyles from './app-header.module.css';
-import { BurgerIcon, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import NavItem from '../nav-item/nav-item';
 import React from 'react';
-import { useLocation } from "react-router-dom";
-import { Link } from 'react-router-dom';
-
-interface INav {
-  constructor: boolean;
-  orders: boolean;
-  profile: boolean;
-}
+import NavDesktop from '../nav-desktop/nav-desktop';
+import NavMobile from '../nav-mobile/nav-mobile';
+import { Link, useLocation } from 'react-router-dom';
+import { INav } from '../../types';
+import headerStyles from './app-header.module.css'
+import { MenuIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import logo from '../../images/logo-mobile.svg'
 
 const AppHeader: React.FunctionComponent = () => {
 
   const [nav, setNav] = React.useState<INav>({ constructor: false, orders: false, profile: false });
+  const [isMenuOpen, setMenuOpen] = React.useState<boolean>(false);
   const { pathname } = useLocation();
 
   React.useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === '/react-burger') {
       setNav({ constructor: true, orders: false, profile: false })
     } else if (pathname.includes('/react-burger/profile')) {
       setNav({ constructor: false, orders: false, profile: true })
+      if (pathname.includes('/react-burger/profile/orders')) {
+        setNav({ constructor: false, orders: false, profile: true, ordersHistory: true })
+      } else setNav({ constructor: false, orders: false, profile: true, ordersHistory: false })
     } else if (pathname === '/react-burger/feed') {
       setNav({ constructor: false, orders: true, profile: false })
     } else {
@@ -28,19 +28,25 @@ const AppHeader: React.FunctionComponent = () => {
     }
   }, [pathname])
 
+  const handleMenuClick = () => {
+    setMenuOpen(true);
+  }
+
   return (
-    <header className={appHeaderStyles.header}>
-      <div className={appHeaderStyles.container}>
-        <nav className={appHeaderStyles.nav}>
-          <Link to='/react-burger' className={appHeaderStyles.link}><NavItem Icon={BurgerIcon} description='Constructor' active={nav.constructor} /></Link>
-          <Link to='/react-burger/feed' className={appHeaderStyles.link}><NavItem Icon={ListIcon} description='Order feed' active={nav.orders} /></Link>
-        </nav>
-        <Link to='/react-burger' className={appHeaderStyles.logo}>
-          <Logo />
+    <header className={headerStyles.header}>
+      <NavDesktop location={nav} />
+
+      <div className={headerStyles.container}>
+        <Link to='/react-burger' className={headerStyles.icon_logo}>
+          <img src={logo} alt='logo' />
         </Link>
-        <Link to='/react-burger/profile' className={appHeaderStyles.link}><NavItem Icon={ProfileIcon} description='Profile' active={nav.profile} /></Link>
+        <div className={headerStyles.icon_menu} onClick={handleMenuClick}>
+        <MenuIcon type="primary" />
+        </div>
       </div>
-    </header >
+
+      <NavMobile location={nav} menu={isMenuOpen} setMenu={setMenuOpen}/>
+    </header>
   )
 }
 

@@ -1,1 +1,8 @@
+@media screen and (max-width: 600px) {
 
+  .input_size_default{
+    width: 280px;
+    background-color: red;
+  }
+  
+}

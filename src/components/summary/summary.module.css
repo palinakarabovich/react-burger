@@ -1,0 +1,43 @@
+
+.summary{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #131316;
+}
+
+.price {
+  margin-top: 0;
+  margin-bottom: 0;
+  composes: text_type_digits-medium from global;
+}
+
+.currency {
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+  object-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digits{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .price{
+    font-size: 40px;
+  }
+  
+}

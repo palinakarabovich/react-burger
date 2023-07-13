@@ -97,7 +97,10 @@ const BurgerConstructor = () => {
         }
       </div>
       <div className={burgerConstructorStyles.info}>
-        <p className={burgerConstructorStyles.price}>{price}<span className={burgerConstructorStyles.currency}><CurrencyIcon type="primary" /></span></p>
+        <div className={burgerConstructorStyles.digits}>
+          <p className={burgerConstructorStyles.price}>{price}</p>
+          <div className={burgerConstructorStyles.currency}><CurrencyIcon type="primary" /></div>
+        </div>
         <Button htmlType="button" type="primary" size="large" onClick={onOrderButtonClick}>
           {
             !orderRequest ? 'Place order' : 'Saving...'

@@ -5,11 +5,26 @@ import React from 'react';
 import { changeIngredientsOrder } from '../../services/slices/constructorSlice';
 import { TIngredientDrag, DraggableTypes } from '../../types';
 import { useTypedDispatch } from '../../services';
+import { getCurrentDimension } from '../../utils/getCurrentDemention';
+import ConsctructorElementMobile from '../constructor-element-mobile/constructor-element-mobile';
 
 const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ type, ingredient, index, handleClose, isLocked, isDrag }) => {
 
   const ref = React.useRef<HTMLDivElement>(null)
   const dispatch = useTypedDispatch();
+  const [screenSize, setScreenSize] = React.useState(getCurrentDimension());
+
+  React.useEffect(() => {
+    window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, []);
+
+  const resizeHandler = () => {
+    setScreenSize(getCurrentDimension())
+  }
+
 
   const [{ opacity }, drag] = useDrag({
     type: DraggableTypes.constructorIngredients,
@@ -31,7 +46,7 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
         return;
       } else {
         if (dragIndex !== undefined && hoverIndex !== undefined)
-        dispatch(changeIngredientsOrder([dragIndex, hoverIndex]))
+          dispatch(changeIngredientsOrder([dragIndex, hoverIndex]))
       }
     },
     collect: monitor => ({
@@ -43,14 +58,22 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
 
   return (
     <div draggable className={burgerConstructorElementStyles.element} style={{ opacity, border }} ref={ref}>
-      <ConstructorElement
-        type={type}
-        text={`${ingredient.name}${type === 'bottom' ? ' (bottom)' : type === 'top' ? ' (top)' : ''}`}
-        price={ingredient.price}
-        thumbnail={ingredient.image}
-        handleClose={handleClose}
-        isLocked={isLocked}
-      />
+      {
+        screenSize.width > 1100
+          ?
+          <ConstructorElement
+            type={type}
+            text={`${ingredient.name}${type === 'bottom' ? ' (bottom)' : type === 'top' ? ' (top)' : ''}`}
+            price={ingredient.price}
+            thumbnail={ingredient.image}
+            handleClose={handleClose}
+            isLocked={isLocked}
+          />
+          : <ConsctructorElementMobile
+            ingredient={ingredient}
+            type={type}
+          />
+      }
     </div>
   )
 };

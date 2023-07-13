@@ -22,6 +22,7 @@ const PersonalOrdersInfo = () => {
 
   return (
     <div className={personalOrderInfoStyles.page}>
+            <h2 className={personalOrderInfoStyles.title}>You have ordered:</h2>
       {
         connected && sortedOrders.length !== 0 ?  (
           <ul className={personalOrderInfoStyles.list}>

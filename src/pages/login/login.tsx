@@ -1,14 +1,15 @@
 import loginStyles from './login.module.css';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { login } from '../../services/actions/authActions';
 import { useTypedDispatch } from '../../services';
 
-const Login = () => {
+const Login: React.FC = () => {
 
   const [userData, setUserData] = React.useState<{ email: string; password: string }>({ email: '', password: '' });
   const dispatch = useTypedDispatch();
+  const [isIconClicked, setIconClicked] = React.useState<boolean>(false)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -22,24 +23,31 @@ const Login = () => {
     dispatch(login(userData));
   }
 
+  const handleIconlick = () => {
+    setIconClicked(!isIconClicked);
+  }
+
   return (
     <section className={loginStyles.container}>
       <h2 className={loginStyles.title}>Login</h2>
       <form className={loginStyles.form} onSubmit={handleLogin}>
-        <EmailInput
+        <Input
           onChange={onChange}
           value={userData.email}
           name={'email'}
-          isIcon={false}
           placeholder={'Email'}
+          type='email'
+          extraClass={loginStyles.input_custom}
         />
-        <PasswordInput
-          onChange={onChange}
-          value={userData.password}
-          name={'password'}
-          extraClass="mb-2"
-          placeholder={'Password'}
-        />
+          <Input
+            type={isIconClicked ? 'text' : 'password'}
+            onChange={onChange}
+            value={userData.password}
+            name={'password'}
+            placeholder={'Password'}
+            icon={isIconClicked ? 'HideIcon' : 'ShowIcon'}
+            onIconClick={handleIconlick}
+          />
         <Button htmlType="submit" type="primary" size="medium">
           Login
         </Button>
