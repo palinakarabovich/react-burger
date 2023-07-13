@@ -17,11 +17,7 @@ const modalRoot = document.getElementById('root-modal') as HTMLDivElement;
 const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
   const history = useHistory();
   const dispatch = useTypedDispatch();
-  const { orderSuccess } = useTypedSelector((store) => store.order);
-
-  React.useEffect(() => {
-    console.log(children)
-  })
+  const { orderSuccess, orderRequest } = useTypedSelector((store) => store.order);
 
   React.useEffect(() => {
     window.addEventListener('keydown', closeEsc)
@@ -49,7 +45,15 @@ const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
       <ModalOverlay onClose={onClose} />
       <div className={modalStyles.container}>
         <h2 className={modalStyles.title}>{title}</h2>
-        <div className={modalStyles.closeButton} onClick={onClose} id='modal-close-icon'><CloseIcon type="primary" /></div>
+
+        {
+          !orderRequest
+            ? <div className={modalStyles.closeButton} onClick={onClose} id='modal-close-icon'>
+              <CloseIcon type="primary" />
+            </div>
+            : <></>
+        }
+
         {children}
       </div>
     </>, modalRoot)

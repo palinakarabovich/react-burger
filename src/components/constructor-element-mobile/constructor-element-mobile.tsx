@@ -13,7 +13,7 @@ const ConsctructorElementMobile: React.FC<IConsctructorElementMobile> = ({ ingre
   return (
     <>
       <div className={constructorElementMobileStyles.info}>
-        <img className={constructorElementMobileStyles.image} alt={ingredient.name} src={ingredient.image_mobile} />
+        <img className={`${constructorElementMobileStyles.image} ${type === 'bottom' ? constructorElementMobileStyles.image_rotate : ''}`} alt={ingredient.name} src={ingredient.image_mobile} />
         <p className={constructorElementMobileStyles.title}>{`${ingredient.name}${type === 'bottom' ? ' (bottom)' : type === 'top' ? ' (top)' : ''}`}</p>
       </div>
       <div className={constructorElementMobileStyles.digits}>

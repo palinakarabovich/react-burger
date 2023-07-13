@@ -16,8 +16,9 @@
   .container{
     justify-content: flex-start;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100% - 32px);
     padding-top: 30px;
+    box-sizing: border-box;
   }
 
   .container{

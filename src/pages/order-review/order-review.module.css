@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  height: calc(100% - 32px);
+}
+
+.button{
+  padding-top: 30px;
+  align-self: flex-start;
+}

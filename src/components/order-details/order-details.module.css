@@ -40,6 +40,11 @@
   flex-direction: column;
 }
 
+.warning{
+  composes: text_type_main-default from global;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .number{
     font-size: 40px;
