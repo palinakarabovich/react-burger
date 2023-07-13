@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import BurgerConstructor from "../../components/burger-constructor/burger-constructor";
 import { useTypedSelector } from "../../services";
 import orderReviewStyles from './order-review.module.css'
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ArrowDownIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const OrderReview = () => {
   const [screenSize, setScreenSize] = React.useState(getCurrentDimension());
@@ -31,16 +31,20 @@ const OrderReview = () => {
   }
 
   const handleBackClick = () => {
-    history.push({pathname: '/react-burger'})
+    history.push({ pathname: '/react-burger' })
   }
 
   return (
     <div className={orderReviewStyles.container}>
-      <div className={orderReviewStyles.button}>
-        <Button htmlType="button" type="secondary" size="small" onClick={handleBackClick}>
-          Back to constructor
-        </Button>
+      <div className={orderReviewStyles.buttons_group}>
+        <div className={orderReviewStyles.icon}>
+          <ArrowDownIcon type="secondary" />
+        </div>
+        <button className={orderReviewStyles.button} onClick={handleBackClick}>
+          Back
+        </button>
       </div>
+      <h2 className={orderReviewStyles.title}>Your order</h2>
       {
         price !== 0 || orderSuccess
           ? <BurgerConstructor />

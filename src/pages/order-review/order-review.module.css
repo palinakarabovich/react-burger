@@ -8,7 +8,33 @@
   height: calc(100% - 32px);
 }
 
-.button{
-  padding-top: 30px;
+.buttons_group{
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.title {
+  composes: text_type_main-medium from global;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.icon{
+  transform: rotate(90deg);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: gray;
+  composes: text_type_main-default from global;
 }
