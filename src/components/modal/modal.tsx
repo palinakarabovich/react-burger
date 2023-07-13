@@ -4,6 +4,8 @@ import React, { ReactNode } from 'react';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import { useHistory } from 'react-router-dom';
+import { useTypedDispatch, useTypedSelector } from '../../services';
+import { cleanOrder } from '../../services/slices/orderSlice';
 
 interface IModalProps {
   children: ReactNode;
@@ -14,6 +16,12 @@ const modalRoot = document.getElementById('root-modal') as HTMLDivElement;
 
 const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
   const history = useHistory();
+  const dispatch = useTypedDispatch();
+  const { orderSuccess } = useTypedSelector((store) => store.order);
+
+  React.useEffect(() => {
+    console.log(children)
+  })
 
   React.useEffect(() => {
     window.addEventListener('keydown', closeEsc)
@@ -28,7 +36,12 @@ const Modal: React.FunctionComponent<IModalProps> = ({ children, title }) => {
   }
 
   const onClose = () => {
-    history.goBack();
+    if (orderSuccess) {
+      dispatch(cleanOrder());
+      history.replace({ pathname: '/react-burger' })
+    } else {
+      history.goBack();
+    }
   }
 
   return ReactDOM.createPortal(

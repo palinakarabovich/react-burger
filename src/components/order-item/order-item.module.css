@@ -114,3 +114,15 @@
   width: 100%;
   text-align: left;
 }
+
+@media screen and (max-width: 500px) {
+  .info{
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .sum{
+    align-self: flex-end;
+  }
+}

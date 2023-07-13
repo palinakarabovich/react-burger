@@ -69,7 +69,7 @@ const OrderItem: React.FunctionComponent<IOrderProps> = ({ order, status }) => {
               })
             }
           </ul>
-          <div><p className={orderItemStyles.price}>{price}<span className={orderItemStyles.icon}><CurrencyIcon type="primary" /></span></p></div>
+          <div className={orderItemStyles.sum}><p className={orderItemStyles.price}>{price}<span className={orderItemStyles.icon}><CurrencyIcon type="primary" /></span></p></div>
         </div>
       </article>
     </Link>

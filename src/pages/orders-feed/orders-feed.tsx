@@ -5,7 +5,6 @@ import React from 'react';
 import { wsInit, wsActions } from '../../services/slices/ordersAllSlice';
 import { IOrder } from '../../types';
 import Loader from '../../components/loader/loader';
-import { getCurrentDimension } from '../../utils/getCurrentDemention';
 
 const OrdersFeed = () => {
   const dispatch = useTypedDispatch();

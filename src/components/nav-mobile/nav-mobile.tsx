@@ -36,14 +36,14 @@ const NavMobile: React.FC<INavProps> = ({ location, menu, setMenu }) => {
             </div>
             <h2 className={navStyles.title}>Menu</h2>
             <nav className={navStyles.navigation}>
-              <p className={navStyles.profile} onClick={() => setProfileClicked(!isProfileClicked)}>
+              <div className={navStyles.profile} onClick={() => setProfileClicked(!isProfileClicked)}>
                 <NavItem Icon={ProfileIcon} description='Profile' active={location.profile} />
                 <div className={navStyles.icon__arrow}>
                   {
                     isProfileClicked ? <ArrowUpIcon type='primary' /> : <ArrowDownIcon type={location.profile ? 'primary' : 'secondary'} />
                   }
                 </div>
-              </p>
+              </div>
               {
                 isProfileClicked && (
                   <div className={navStyles.profile_list}>

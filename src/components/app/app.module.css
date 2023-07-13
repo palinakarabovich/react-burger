@@ -11,4 +11,6 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   composes: text from global;
+  margin: 0;
+  padding: 0;
 }

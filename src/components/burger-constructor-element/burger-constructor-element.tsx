@@ -1,11 +1,12 @@
 import burgerConstructorElementStyles from './burger-constructor-element.module.css';
-import { ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag, useDrop } from 'react-dnd'
 import React from 'react';
 import { changeIngredientsOrder } from '../../services/slices/constructorSlice';
 import { TIngredientDrag, DraggableTypes } from '../../types';
 import { useTypedDispatch } from '../../services';
 import { getCurrentDimension } from '../../utils/getCurrentDemention';
+import ConsctructorElementMobile from '../constructor-element-mobile/constructor-element-mobile';
 
 const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ type, ingredient, index, handleClose, isLocked, isDrag }) => {
 
@@ -68,16 +69,10 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
             handleClose={handleClose}
             isLocked={isLocked}
           />
-          : <>
-            <div className={burgerConstructorElementStyles.info}>
-              <img className={burgerConstructorElementStyles.image} alt={ingredient.name} src={ingredient.image_mobile} />
-              <p className={burgerConstructorElementStyles.title}>{`${ingredient.name}${type === 'bottom' ? ' (bottom)' : type === 'top' ? ' (top)' : ''}`}</p>
-            </div>
-            <div className={burgerConstructorElementStyles.digits}>
-            <p className={burgerConstructorElementStyles.price}>{ingredient.price}</p>
-            <span className={burgerConstructorElementStyles.currency}><CurrencyIcon type="primary" /></span>
-            </div>
-          </>
+          : <ConsctructorElementMobile
+            ingredient={ingredient}
+            type={type}
+          />
       }
     </div>
   )
