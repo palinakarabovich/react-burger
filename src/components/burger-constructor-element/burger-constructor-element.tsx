@@ -25,7 +25,6 @@ const BurgerConstructorElement: React.FunctionComponent<TIngredientDrag> = ({ ty
     setScreenSize(getCurrentDimension())
   }
 
-
   const [{ opacity }, drag] = useDrag({
     type: DraggableTypes.constructorIngredients,
     item: { index } as TIngredientDrag,

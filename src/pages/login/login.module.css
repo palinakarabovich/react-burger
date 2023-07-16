@@ -12,6 +12,7 @@
 .title {
   margin: 0;
   composes: text_type_main-medium from global;
+  padding-bottom: 20px;
 }
 
 .form {
@@ -30,6 +31,14 @@
   composes: text_type_main-default from global;
   color: #8585AD;
   width: 90%;
+  text-align: center;
+}
+
+.testing {
+  margin: 0;
+  composes: text_type_main-default from global;
+  color: #8585AD;
+  width: 50%;
   text-align: center;
 }
 
