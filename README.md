@@ -14,7 +14,7 @@ Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-burger/
 - View detailed information about an ingredient by clicking on it
 - View detailed information about an order by clicking on it
   ![](profile-orders-feed.gif)
-- Design is responsive
+- Design is responsive      
   ![](mobile.gif)
 
 ## Technologies
